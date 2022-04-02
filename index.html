@@ -1,12 +1,40 @@
 <!DOCTYPE html>
 <html lang = en>
     <head>
+        <link rel="stylesheet" 
+        href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" 
+        crossorigin="anonymous">
 
+        <link rel = "stylesheet" href="./assets/images/style.css">
     </head>
     <body>
-        <!-- user input -->
+
+
+      
+        <!-- DropDown menu -->
+        <div class="grid-x grid-padding-x" > 
+            <div class="cell small-4 dropDown" id="dropDown">
+                <label>Select Language
+                    <select>
+                      <option value="husker">English</option>
+                      <option value="starbuck">Spanish</option>
+                      <option value="hotdog">German</option>
+                      <option value="apollo">French</option>
+                    </select>
+                  </label>
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x inputBox" >
+            <div class="cell small-4 english">English input goes here</div>
+        </div>
+    
+        <!-- translate button -->
+        <a class="button primary" href="#">Translate</a>
+        </div>
+  
 
         <!-- translation output -->
+
 
         <!-- selected word english -->
         <!-- definition english -->
@@ -17,6 +45,6 @@
         <!-- synonyms translation -->
 
 
-
+        <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>
     </body>
 </html>
