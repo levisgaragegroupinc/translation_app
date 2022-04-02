@@ -12,6 +12,7 @@ Edit this description here.
 
 ## Appearance
 
+
 ### Single Page Application
 
 ![wireframe](./assets/images/project-wireframe-desktop_1.png)
@@ -26,5 +27,4 @@ Navigate to [translation_app](url here) to view the live page.
 This project uses:
 
  - Foundation [foundation]https://get.foundation/index.html)
-
 
