@@ -13,7 +13,8 @@
       
         <!-- DropDown menu -->
         <div class="grid-x grid-padding-x" > 
-            <div class="cell small-4 dropDown" id="dropDown">
+            <div class="cell small-2 dropDown" id="dropDown">
+                <p>Input</p>
                 <label>Select Language
                     <select>
                       <option value="husker">English</option>
@@ -21,17 +22,26 @@
                       <option value="hotdog">German</option>
                       <option value="apollo">French</option>
                     </select>
-                  </label>
+                </label>
             </div>
         </div>
+
+        <!-- text input box -->
         <div class="grid-x grid-padding-x inputBox" >
-            <div class="cell small-4 english">English input goes here</div>
+            <div class="cell small-5 english">
+                <label>
+                    <textarea placeholder="Your text here"></textarea>
+                </label>
+            </div>
         </div>
-    
+
         <!-- translate button -->
-        <a class="button primary" href="#">Translate</a>
+        <div class="grid-x grid-padding-x translateBtn" >
+            <div class="cell small-4 english">
+                <a class="button primary" href="#">Translate</a>
+            </div>
         </div>
-  
+
 
         <!-- translation output -->
 
