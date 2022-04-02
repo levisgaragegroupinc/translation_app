@@ -7,14 +7,27 @@
 
         <link rel = "stylesheet" href="./assets/images/style.css">
     </head>
-    <body>
+    <body> 
 
-
-      
-        <!-- DropDown menu -->
+        <!-- DropDown menu language input -->
         <div class="grid-x grid-padding-x" > 
-            <div class="cell small-2 dropDown" id="dropDown">
+            <div class="cell small-2 dropDown" id="dropDownInput">
                 <p>Input</p>
+                <label>Select Language
+                    <select>
+                      <option value="husker">English</option>
+                      <option value="starbuck">Spanish</option>
+                      <option value="hotdog">German</option>
+                      <option value="apollo">French</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+
+        <!-- DropDown menu language output -->
+        <div class="grid-x grid-padding-x" > 
+            <div class="cell small-2 dropDown" id="dropDownOutput">
+                <p>Output</p>
                 <label>Select Language
                     <select>
                       <option value="husker">English</option>
@@ -28,7 +41,7 @@
 
         <!-- text input box -->
         <div class="grid-x grid-padding-x inputBox" >
-            <div class="cell small-5 english">
+            <div class="cell small-5 userInput">
                 <label>
                     <textarea placeholder="Your text here"></textarea>
                 </label>
@@ -37,7 +50,7 @@
 
         <!-- translate button -->
         <div class="grid-x grid-padding-x translateBtn" >
-            <div class="cell small-4 english">
+            <div class="cell small-4 translateBtn">
                 <a class="button primary" href="#">Translate</a>
             </div>
         </div>
