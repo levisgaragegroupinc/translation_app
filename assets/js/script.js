@@ -5,6 +5,56 @@ var inTextEl = document.getElementById("inputText");
 
 buttonEl.addEventListener("click", handleTranslateBtnEvent);
 
+// Populate language input drop-down.
+document.getElementById('language-source-options').onclick = function() {
+    // Key value pairs.
+    var languageKeyValuePairs = {
+        catalan: 'ca', danish: 'da', dutch: 'nl', english: 'en', finnish: 'fi', 
+        french: 'fr', german: 'de', irish: 'ga', italian: 'it', latin: 'la',
+        polish: 'pl', portuguese: 'pt', russian: 'ru', samoan: 'sm', spanish: 'es',
+        swedish: 'sv', ukrainian: 'uk',
+    }      
+    // Convert keys and values to arrays.
+    const languageName = Object.keys(languageKeyValuePairs);
+    const languageCode = Object.values(languageKeyValuePairs);
+    // Loop through arrays and create drop-down options.
+    for (i = 0; i < languageName.length; i++) {
+        var name = languageName[i];
+        var code = languageCode[i];
+        var option = document.createElement('option');
+        option.value = code;
+        option.text = name;
+        document.getElementById('language-source-options').appendChild(option);
+    }
+};
+
+// Populate language output drop-down.
+document.getElementById('language-target-options').onclick = function() {
+    // Key value pairs.
+    var languageKeyValuePairs = {
+        catalan: 'ca', danish: 'da', dutch: 'nl', english: 'en', finnish: 'fi', 
+        french: 'fr', german: 'de', irish: 'ga', italian: 'it', latin: 'la',
+        polish: 'pl', portuguese: 'pt', russian: 'ru', samoan: 'sm', spanish: 'es',
+        swedish: 'sv', ukrainian: 'uk',
+    }      
+    // Convert keys and values to arrays.
+    const languageName = Object.keys(languageKeyValuePairs);
+    const languageCode = Object.values(languageKeyValuePairs);
+    // Loop through arrays and create drop-down options.
+    for (i = 0; i < languageName.length; i++) {
+        var name = languageName[i];
+        var code = languageCode[i];
+        var option = document.createElement('option');
+        option.value = code;
+        option.text = name;
+        document.getElementById('language-target-options').appendChild(option);
+    }
+};
+
+
+
+
+
 // Event listener function for the translate button
 function handleTranslateBtnEvent() {
     // get the values of input/output language and input text that a user entered
@@ -22,3 +72,5 @@ function handleTranslateBtnEvent() {
     // initialize input text value
     inTextEl.value = "";
 }
+
+
