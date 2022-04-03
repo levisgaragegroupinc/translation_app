@@ -1,5 +1,5 @@
 var buttonEl = document.getElementById("translatebtn");
-var inLanguageEl = document.getElementById("dropDown");
+var inLanguageEl = document.getElementById("dropDownInput");
 var outLanguageEl = document.getElementById("dropDownOutput");
 var inTextEl = document.getElementById("inputText");
 
@@ -51,10 +51,6 @@ document.getElementById('language-target-options').onclick = function() {
     }
 };
 
-
-
-
-
 // Event listener function for the translate button
 function handleTranslateBtnEvent() {
     // get the values of input/output language and input text that a user entered
@@ -68,7 +64,28 @@ function handleTranslateBtnEvent() {
     ////////////////////////////////////////////////////////////
     // Need to add function-call for the translation API here //
     ////////////////////////////////////////////////////////////
+    const encodedParams = new URLSearchParams();
+    encodedParams.append("q", inText);
+    encodedParams.append("format", "text");
+    encodedParams.append("target", outLang);
+    encodedParams.append("source", inLang);
+    
+    const options = {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/x-www-form-urlencoded',
+            'Accept-Encoding': 'application/gzip',
+            'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com',
+            'X-RapidAPI-Key': '5281658b66msh7dccb31e2c9a977p1b3f77jsnd0b6321375de'
+        },
+        body: encodedParams
+    };
 
+    fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
+ 
     // initialize input text value
     inTextEl.value = "";
 }
