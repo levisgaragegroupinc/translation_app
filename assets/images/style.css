@@ -6,7 +6,6 @@
 };
 
 #left {
-    justify-content: center;
     border: black dashed 1px;
 }
 
@@ -14,6 +13,7 @@
     border: black solid 1px;
     width:70%;
     height: 30%;
+    border-radius: 10px;
 }
 
 #translationOutput {
