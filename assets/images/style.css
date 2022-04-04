@@ -9,3 +9,9 @@
     justify-content: center;
     border: black dashed 1px;
 }
+
+.outputBox {
+    border: black solid 1px;
+    width:70%;
+    height: 30%;
+}
