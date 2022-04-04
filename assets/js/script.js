@@ -2,6 +2,10 @@ var buttonEl = document.getElementById("translatebtn");
 var inLanguageEl = document.getElementById("dropDownInput");
 var outLanguageEl = document.getElementById("dropDownOutput");
 var inTextEl = document.getElementById("inputText");
+var outTextEl = document.getElementById("translationOutput");
+
+// Array for the translation history
+var transHistory = [];
 
 buttonEl.addEventListener("click", handleTranslateBtnEvent);
 
@@ -58,12 +62,6 @@ function handleTranslateBtnEvent() {
     var outLang = outLanguageEl.children[1].children[0].value;
     var inText = inTextEl.value.trim();
 
-    console.log(inLang, outLang);
-    console.log(inText);
-
-    ////////////////////////////////////////////////////////////
-    // Need to add function-call for the translation API here //
-    ////////////////////////////////////////////////////////////
     const encodedParams = new URLSearchParams();
     encodedParams.append("q", inText);
     encodedParams.append("format", "text");
@@ -83,11 +81,127 @@ function handleTranslateBtnEvent() {
 
     fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
 	.then(response => response.json())
-	.then(response => console.log(response))
+	.then(response => {
+        console.log(response);
+        console.log(response.data.translations[0].translatedText);
+        // Create a new object to store information of this translation 
+        var newSentence = {
+            inputLang: inLang,
+            inputText: inText,
+            outputLang: outLang,
+            outputText: response.data.translations[0].translatedText,
+        };
+        // load the stored history from the local storage
+        transHistory = JSON.parse(localStorage.getItem("history"));
+        if(!transHistory) {
+            transHistory = [];
+        }
+        // Add a new object to the beginning of the history array 
+        transHistory.unshift(newSentence);
+        // Max number of the history limited by 10
+        while(transHistory.length > 10) {
+            transHistory.pop();
+        }
+        // Save the history array to the localStorage
+        localStorage.setItem("history", JSON.stringify(transHistory));
+        // How many translation histories are saved
+        var pEls = document.querySelectorAll("#translationOutput>p");
+        // Put history data to the proper text area
+        if((pEls.length/2 === transHistory.length-1) || (pEls.length/2 === 10 && transHistory.length === 10)) {
+            renderHistory(true, pEls.length);
+        }
+        else {
+            renderHistory(false, pEls.length);
+        }
+    })
 	.catch(err => console.error(err));
  
     // initialize input text value
     inTextEl.value = "";
 }
 
+// Argument: "addOne" 
+// <true> - insert only the latest translation thing at the beginning of outTextEl
+// <false> - insert all data stored in localstorage to outTextEl
+// Argument : "pElsLength" - number of p elements under div(#translationOutput), 1 translation hitory has 2 p elements.
+function renderHistory(addOne, pElsLength) {
+    if (transHistory.length === 0) {
+        return;
+    }
 
+    // var pEls = document.querySelectorAll("#translationOutput>p");
+    var iterateMax = (addOne)?1:transHistory.length;
+    
+    // Clear textContent of Div when the first translation history is added. (THIS CODE CAN BE REMOVED IF THERE IS NO DEFAULT TEXT IN DIV)
+    if(!pElsLength) {
+        outTextEl.textContent = "";
+    }
+
+    if(!addOne) {
+        while(outTextEl.lastElementChild){
+            outTextEl.removeChild(outTextEl.lastElementChild); 
+        }
+    }
+
+    for(var i = 0; i < iterateMax; i++) {
+        var wordList = [];
+        var inputTextEl = document.createElement("p"); 
+        var outputTextEl = document.createElement("p");
+
+        if(i >= 1 || pElsLength >=2) {
+            var hrEl = document.createElement("hr");
+            if(addOne) {
+                outTextEl.prepend(hrEl);
+            }
+            else {
+                outTextEl.appendChild(hrEl);
+            }
+        }
+
+        // configure innerHTML for inputText
+        wordList = transHistory[i].inputText.split(" ");
+        var innerEl = "(" + transHistory[i].inputLang + "): ";
+        for(var j = 0; j < wordList.length; j++) {
+            innerEl = innerEl + "<span>" + wordList[j] + " </span>";
+        }
+        inputTextEl.innerHTML = innerEl;
+
+        // configure innerHTML for outputText
+        wordList = [];
+        wordList = transHistory[i].outputText.split(" ");
+        innerEl = "(" + transHistory[i].outputLang + "): ";
+        for(var k = 0; k < wordList.length; k++) {
+            innerEl = innerEl + "<span>" + wordList[k] + " </span>";
+        }
+        outputTextEl.innerHTML = innerEl;
+
+        // insert the configured innerHTML to outTextEl
+        if(addOne) {
+            outTextEl.prepend(outputTextEl);
+            outTextEl.prepend(inputTextEl);
+            // if # of saved history exeed 10, remove the last one
+            if(pElsLength === 20) {
+                for(var l = 0; l < 3; l++) {
+                    outTextEl.removeChild(outTextEl.lastElementChild);
+                }
+            }
+        }
+        else {
+            outTextEl.appendChild(inputTextEl);
+            outTextEl.appendChild(outputTextEl);
+        }
+    }
+    return;
+}
+
+// load localstorage data for the web page loading or refreshing
+function loadHistoryNRender() {
+    // load the stored history from the local storage
+    transHistory = JSON.parse(localStorage.getItem("history"));
+    if(!transHistory) {
+        transHistory = [];
+    }
+    renderHistory(false, 0);
+}
+
+loadHistoryNRender();
