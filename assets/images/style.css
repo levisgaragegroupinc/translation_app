@@ -1,7 +1,12 @@
 body {
+<<<<<<< HEAD
     margin-left: 20px;
     background-image:  url("https://3.bp.blogspot.com/-jWFnU862W7s/VUjVKU0S2RI/AAAAAAAAFyw/1blfN4mL0Bk/s1600/printable-blank-world-map-blue-green%2B(2).png");
     background-size: cover;
+=======
+    align-items: center;
+    margin: 20px;
+>>>>>>> 9c39b8b (centering page)
 }
 
 .header {
@@ -11,11 +16,8 @@ body {
     text-align: center;
     margin-left: 50px;
 
-};
-
-#left {
-    border: black dashed 1px;
 }
+
 
 .outputBox {
     border: black solid 1px;
@@ -27,6 +29,7 @@ body {
 
 #translationOutput {
     border: black solid 1px;
+<<<<<<< HEAD
     width:60%;
     height: 55%;
     background-color: white;
@@ -34,4 +37,8 @@ body {
 
 #translationOutput>p>span:hover {
     cursor: pointer;
+=======
+    width:70%;
+    height: 50%;
+>>>>>>> 9c39b8b (centering page)
 }
