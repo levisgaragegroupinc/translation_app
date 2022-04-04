@@ -10,50 +10,58 @@
     </head>
     <body> 
 
-        <!-- DropDown menu language input -->
-        <div class="grid-x grid-padding-x" > 
-            <div class="cell small-2 dropDown" id="dropDownInput">
-                <p>Input</p>
-                <label>Select Language
-                    <select id="language-source-options">
-                      <option selected>Select Language</option>
-                    </select>
-                </label>
-            </div>
+        <!-- Left side of page -->
+    <div class="grid-x">
+    <div class="cell large-auto" id="left">
+    
+    <!-- DropDown menu language input -->
+    <div class="grid-x">
+    <div class="grid-x grid-padding-x" > 
+        <div class="cell small dropDown" id="dropDownInput">
+            <p>Input</p>
+            <label>Select Language
+                <select id="language-source-options">
+                  <option selected>Select Language</option>
+                </select>
+            </label>
         </div>
+    </div>
 
-        <!-- DropDown menu language output -->
-        <div class="grid-x grid-padding-x" > 
-            <div class="cell small-2 dropDown" id="dropDownOutput">
-                <p>Output</p>
-                <label>Select Language
-                    <select id="language-target-options">
-                      <option selected>Select Language</option>
-                    </select>
-                </label>
-            </div>
+    <!-- DropDown menu language output -->
+    <div class="grid-x grid-padding-x" > 
+        <div class="cell small dropDown" id="dropDownOutput">
+            <p>Output</p>
+            <label>Select Language
+                <select id="language-target-options">
+                  <option selected>Select Language</option>
+                </select>
+            </label>
         </div>
-
-        <!-- text input box -->
-        <div class="grid-x grid-padding-x inputBox" >
-            <div class="cell small-5 userInput">
-                <label>
-                    <textarea placeholder="Your text here" id="inputText"></textarea>
-                </label>
-            </div>
+    </div>
+</div>
+    <!-- text input box -->
+    <div class="grid-x grid-padding-x inputBox" >
+        <div class="cell small-5 userInput">
+            <label>
+                <textarea placeholder="Your text here" id="inputText"></textarea>
+            </label>
         </div>
+    </div>
 
-        <!-- translate button -->
-        <div class="grid-x grid-padding-x translateBtn" >
-            <div class="cell small-4 translateBtn">
-                <a class="button primary" href="#" id="translatebtn">Translate</a>
-            </div>
+    <!-- translate button -->
+    <div class="grid-x grid-padding-x translateBtn" >
+        <div class="cell small-4 translateBtn">
+            <a class="button primary" href="#" id="translatebtn">Translate</a>
         </div>
+    </div>
+    </div>
 
+    <!-- right side of page -->
+  <div class="cell large-auto">
 
-        <!-- translation output -->
-    <body>
-        <!-- user input -->
+  <!-- translation output -->
+
+  <!-- user input -->
 
         <!-- translation output -->
         <!-- selected word english -->
@@ -63,6 +71,10 @@
         <!-- selected word translation -->
         <!-- definition trasnlation-->
         <!-- synonyms translation -->
+
+  </div>
+    </div>
+
 
 
         <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>
