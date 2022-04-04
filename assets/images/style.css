@@ -1,3 +1,23 @@
-.english {
-   
+.header {
+    border: solid black 1px;
+    width:30%;
+    background-color: rgb(139, 139, 224);
+    text-align: center;
+};
+
+#left {
+    border: black dashed 1px;
+}
+
+.outputBox {
+    border: black solid 1px;
+    width:70%;
+    height: 30%;
+    border-radius: 10px;
+}
+
+#translationOutput {
+    border: black solid 1px;
+    width:60%;
+    height: 55%;
 }

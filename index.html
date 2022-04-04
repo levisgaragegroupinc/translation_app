@@ -10,13 +10,18 @@
     </head>
     <body> 
 
+        <!-- Left side of page -->
+    <div class="grid-x">
+        <div class="cell large-auto" id="left">
+        
         <!-- DropDown menu language input -->
+        <div class="grid-x">
         <div class="grid-x grid-padding-x" > 
-            <div class="cell small-2 dropDown" id="dropDownInput">
-                <p>Input</p>
+            <div class="cell small dropDown" id="dropDownInput">
+                <h4 class="header">Input</h4>
                 <label>Select Language
                     <select id="language-source-options">
-                      <option selected>Select Language</option>
+                    <option selected>Select Language</option>
                     </select>
                 </label>
             </div>
@@ -24,19 +29,19 @@
 
         <!-- DropDown menu language output -->
         <div class="grid-x grid-padding-x" > 
-            <div class="cell small-2 dropDown" id="dropDownOutput">
-                <p>Output</p>
+            <div class="cell small dropDown" id="dropDownOutput">
+                <h4 class="header">Output</h4>
                 <label>Select Language
                     <select id="language-target-options">
-                      <option selected>Select Language</option>
+                    <option selected>Select Language</option>
                     </select>
                 </label>
             </div>
         </div>
-
+    </div>
         <!-- text input box -->
         <div class="grid-x grid-padding-x inputBox" >
-            <div class="cell small-5 userInput">
+            <div class="cell small-5" id=" userInput">
                 <label>
                     <textarea placeholder="Your text here" id="inputText"></textarea>
                 </label>
@@ -50,19 +55,49 @@
             </div>
         </div>
 
+            <br>
+            <br>
+            <br>
 
-        <!-- translation output -->
-    <body>
-        <!-- user input -->
+            <!-- add selected word in input language -->
+            <h3 class="selectedWord"id="selectedWordL"></h3>
+            <br>
+            <!-- selected word definition left -->
+            <h4 class="header">Definition</h4>
+            <div class="cell medium-6 large-4 outputBox" id="outputDefinitionL">definition output</div>
 
-        <!-- translation output -->
-        <!-- selected word english -->
-        <!-- definition english -->
-        <!-- synonyms english -->
+            <br>
 
-        <!-- selected word translation -->
-        <!-- definition trasnlation-->
-        <!-- synonyms translation -->
+            <!-- selected word synonym output left -->
+            <h4 class="header">Synonyms</h4>
+            <div class="cell medium-6 large-4 outputBox" id="outputSynonymL">synonym output</div>
+
+        </div>
+
+        <!-- right side of page -->
+        <div class="cell large-auto" id="right">
+
+            <!-- translation output -->
+            <h4 class="header">Translation</h4>
+            <div class="cell medium-6 large-4 outputBox" id="translationOutput"> translation output</div>
+
+            <!-- selected word translation -->
+            <h3 class="selectedWord"id="selectedWordR"></h3>
+            <br>
+            <!-- definition trasnlation-->
+            <h4 class="header">Definition</h4>
+            <div class="cell medium-6 large-4 outputBox" id="outputDefinitionR">definition output</div>
+
+            <br>
+
+            <!-- synonyms translation -->
+            <h4 class="header">Synonyms</h4>
+            <div class="cell medium-6 large-4 outputBox" id="outputSynonymR">synonym output</div>
+
+
+        </div>
+    </div>
+
 
 
         <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>
