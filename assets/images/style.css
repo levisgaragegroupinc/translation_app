@@ -1,3 +1,9 @@
+body {
+    align-items: center;
+    margin: 20px;
+    background-image:url("https://3.bp.blogspot.com/-jWFnU862W7s/VUjVKU0S2RI/AAAAAAAAFyw/1blfN4mL0Bk/s1600/printable-blank-world-map-blue-green%2B(2).png");
+}
+
 .header {
     border: solid black 1px;
     width:35%;
@@ -5,25 +11,34 @@
     text-align: center;
     margin-left: 50px;
 
-};
-
-#left {
-    border: black dashed 1px;
 }
+
 
 .outputBox {
     border: black solid 1px;
     width:70%;
     height: 30%;
     border-radius: 10px;
+    background-color: white;
 }
 
 #translationOutput {
     border: black solid 1px;
     width:60%;
-    height: 55%;
+    height: 45%;
+    background-color: white;
+    margin-bottom: 18px;
 }
 
 #translationOutput>p>span:hover {
     cursor: pointer;
+    width:70%;
+    height: 50%;
+    height: 46.9%;
+    background-color: white;
+}
+
+.selectLanguage{
+    font-weight: bold;
+    font-size: larger;
 }
