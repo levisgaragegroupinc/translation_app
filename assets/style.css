@@ -2,7 +2,6 @@ body {
     align-items: center;
     margin: 20px;
     background-image:url("https://championtraveler.com/wp-content/uploads/2018/01/VRBO-Countries.jpg");
-    background-repeat: no-repeat;
     background-size: cover;
 }
 
@@ -17,6 +16,7 @@ body {
 
 
 .outputBox {
+    padding:15px;
     border: black solid 1px;
     width:70%;
     height: 30%;
@@ -25,9 +25,10 @@ body {
 }
 
 #translationOutput {
+    padding: 15px;
     border: black solid 1px;
     width:60%;
-    height: 45%;
+    height: 35%;
     background-color: white;
     margin-bottom: 18px;
 }
