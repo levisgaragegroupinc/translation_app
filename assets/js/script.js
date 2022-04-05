@@ -220,6 +220,7 @@ function makeDropdownOptions() {
         var inOption = document.createElement('option');
         var outOption = document.createElement('option');
 
+        // Capitalize the first letter of each language name.    
         var splitName = name.split(' ');
         for (j = 0; j < splitName.length; j++) {
             splitName[j] = splitName[j][0].toUpperCase() + splitName[j].substring(1); 
@@ -227,7 +228,6 @@ function makeDropdownOptions() {
 
         splitName = splitName.join(' ');
         name = splitName;
-
 
         outOption.value = code;
         outOption.text = name;
