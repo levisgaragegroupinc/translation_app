@@ -76,7 +76,7 @@ THEN I am presented with the definition to that word and it's synonyms
 
 ## URL to the GitHub Repository
 
-[GitHub Pages Link: https://github.com/levisgaragegroupinc/translation_app](https://github.com/levisgaragegroupinc/translation_app)
+[GitHub Pages Link: https://levisgaragegroupinc.github.io/translation_app/](https://levisgaragegroupinc.github.io/translation_app/)
 
 ## Original Wireframe
 
