@@ -21,3 +21,7 @@
     width:60%;
     height: 55%;
 }
+
+#translationOutput>p>span:hover {
+    cursor: pointer;
+}
