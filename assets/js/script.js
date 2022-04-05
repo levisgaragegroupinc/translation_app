@@ -229,3 +229,62 @@ function makeDropdownOptions() {
 
 loadHistoryNRender();
 makeDropdownOptions();
+
+// Fetches and returns the definitions from Webster's Dictionary API
+function getDefinition(word) {
+    const dict_API = "0b37ddb6-0f97-4062-879a-5ff3aa4ddbc5";
+    var def_List = [];
+
+    fetch("https://www.dictionaryapi.com/api/v3/references/collegiate/json/" +word+ "?key=" +dict_API)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        document.getElementById("outputDefinitionL").innerText = "";
+        for (let i=0; i<3; i++){
+            if(data[i].fl) {
+                document.getElementById("outputDefinitionL").innerText += "(" +data[i].fl+ "):: " +data[i].shortdef + "\n";
+            } 
+            else {
+                break;
+            }
+        }
+    });
+}
+
+// Fetches and returns the synonyms from Webster's Dictionary API
+function getSynonyms(word) {
+    const thes_API = "ff7cd07e-31b4-4b0e-a50b-80865fe2b28a";
+    var syn_String = "";
+
+    fetch("https://www.dictionaryapi.com/api/v3/references/thesaurus/json/"+word+"?key=" +thes_API)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        var syn_Array = (data[0].meta.syns[0]);
+        
+        if(data[0].meta.syns[0]) {
+            if (syn_Array.length >1)
+            {
+                syn_String = syn_Array[0];
+
+                for (let i=1; i<syn_Array.length; i++) {
+                    syn_String += ", " +syn_Array[i];   
+                    // console.log(i+ ". " +syn_Array[i]);
+                }
+            }
+            else {
+                syn_String = syn_Array[i]
+            }
+        }
+        document.getElementById("outputSynonymL").textContent = syn_String + "\n";
+    });
+}
+
+loadHistoryNRender();
+
+//Note, both getDefinition and getSynonym need the "word" argument. Replace the variable with user input
+var word = "poem";
+getDefinition(word);
+getSynonyms(word);

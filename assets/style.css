@@ -1,13 +1,15 @@
 body {
     align-items: center;
     margin: 20px;
-    background-image:url("https://3.bp.blogspot.com/-jWFnU862W7s/VUjVKU0S2RI/AAAAAAAAFyw/1blfN4mL0Bk/s1600/printable-blank-world-map-blue-green%2B(2).png");
+    background-image:url("https://championtraveler.com/wp-content/uploads/2018/01/VRBO-Countries.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .header {
     border: solid black 1px;
     width:35%;
-    background-color: rgb(136, 189, 224);
+    background-color: rgb(32, 156, 240);
     text-align: center;
     margin-left: 50px;
 
@@ -25,8 +27,9 @@ body {
 #translationOutput {
     border: black solid 1px;
     width:60%;
-    height: 55%;
+    height: 45%;
     background-color: white;
+    margin-bottom: 18px;
 }
 
 #translationOutput>p>span:hover {
@@ -40,4 +43,5 @@ body {
 .selectLanguage{
     font-weight: bold;
     font-size: larger;
+    
 }
