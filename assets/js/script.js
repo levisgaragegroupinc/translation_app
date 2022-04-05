@@ -123,6 +123,7 @@ function renderHistory(addOne, pElsLength) {
         var wordList = [];
         var inputTextEl = document.createElement("p"); 
         var outputTextEl = document.createElement("p");
+        var innerEl;
 
         if(i >= 1 || pElsLength >=2) {
             var hrEl = document.createElement("hr");
@@ -135,19 +136,31 @@ function renderHistory(addOne, pElsLength) {
         }
 
         // configure innerHTML for inputText
-        wordList = transHistory[i].inputText.split(" ");
-        var innerEl = "(" + transHistory[i].inputLang + "): ";
-        for(var j = 0; j < wordList.length; j++) {
-            innerEl = innerEl + "<span>" + wordList[j] + " </span>";
+        // 'en' condition will be removed in the future
+        innerEl = "(" + transHistory[i].inputLang + "): ";
+        if(transHistory[i].inputLang === "en") {
+            wordList = transHistory[i].inputText.split(" ");
+            for(var j = 0; j < wordList.length; j++) {
+                innerEl = innerEl + "<span>" + wordList[j] + " </span>";
+            }
+        }
+        else {
+            innerEl = innerEl + transHistory[i].inputText;
         }
         inputTextEl.innerHTML = innerEl;
 
         // configure innerHTML for outputText
-        wordList = [];
-        wordList = transHistory[i].outputText.split(" ");
+        // 'en' condition will be removed in the future
         innerEl = "(" + transHistory[i].outputLang + "): ";
-        for(var k = 0; k < wordList.length; k++) {
-            innerEl = innerEl + "<span>" + wordList[k] + " </span>";
+        if(transHistory[i].outputLang === "en") {
+            wordList = [];
+            wordList = transHistory[i].outputText.split(" ");
+            for(var k = 0; k < wordList.length; k++) {
+                innerEl = innerEl + "<span>" + wordList[k] + " </span>";
+            }
+        }
+        else {
+            innerEl = innerEl + transHistory[i].outputText;
         }
         outputTextEl.innerHTML = innerEl;
 
