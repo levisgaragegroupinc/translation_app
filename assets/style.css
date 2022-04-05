@@ -9,19 +9,18 @@ body {
 .header {
     border: solid black 1px;
     border-radius: 10px;
-    width:35%;
+    width:80%;
     background-color: rgb(32, 156, 240);
     text-align: center;
-    margin-left: 50px;
+    
 
 }
-
 
 .outputBox {
     padding:15px;
     border: black solid 1px;
-    width:70%;
-    height: 30%;
+    width:80%;
+    height: 450px;
     border-radius: 10px;
     background-color: white;
 }
@@ -29,8 +28,8 @@ body {
 #translationOutput {
     padding: 15px;
     border: black solid 1px;
-    width:60%;
-    height: 30%;
+    width:80%;
+    height: 1000px;
     background-color: white;
     margin-bottom: 18px;
 }
