@@ -92,9 +92,8 @@ function handleWordClickEvent(event) {
 
     console.log(language, selectedWord);
 
-    ////////////////////////////////////////////////////////////////////////////////
-    // Need to add function-call for the translation API and  merriam webster api //
-    ////////////////////////////////////////////////////////////////////////////////
+    getDefinition(selectedWord);
+    getSynonyms(selectedWord);
 }
 
 // Argument: "addOne" 
