@@ -10,58 +10,19 @@ var transHistory = [];
 buttonEl.addEventListener("click", handleTranslateBtnEvent);
 outTextEl.addEventListener("click", handleWordClickEvent);
 
-// Populate language input drop-down.
-document.getElementById('language-source-options').onclick = function() {
-    // Key value pairs.
-    var languageKeyValuePairs = {
-        catalan: 'ca', danish: 'da', dutch: 'nl', english: 'en', finnish: 'fi', 
-        french: 'fr', german: 'de', irish: 'ga', italian: 'it', latin: 'la',
-        polish: 'pl', portuguese: 'pt', russian: 'ru', samoan: 'sm', spanish: 'es',
-        swedish: 'sv', ukrainian: 'uk',
-    }      
-    // Convert keys and values to arrays.
-    const languageName = Object.keys(languageKeyValuePairs);
-    const languageCode = Object.values(languageKeyValuePairs);
-    // Loop through arrays and create drop-down options.
-    for (i = 0; i < languageName.length; i++) {
-        var name = languageName[i];
-        var code = languageCode[i];
-        var option = document.createElement('option');
-        option.value = code;
-        option.text = name;
-        document.getElementById('language-source-options').appendChild(option);
-    }
-};
-
-// Populate language output drop-down.
-document.getElementById('language-target-options').onclick = function() {
-    // Key value pairs.
-    var languageKeyValuePairs = {
-        catalan: 'ca', danish: 'da', dutch: 'nl', english: 'en', finnish: 'fi', 
-        french: 'fr', german: 'de', irish: 'ga', italian: 'it', latin: 'la',
-        polish: 'pl', portuguese: 'pt', russian: 'ru', samoan: 'sm', spanish: 'es',
-        swedish: 'sv', ukrainian: 'uk',
-    }      
-    // Convert keys and values to arrays.
-    const languageName = Object.keys(languageKeyValuePairs);
-    const languageCode = Object.values(languageKeyValuePairs);
-    // Loop through arrays and create drop-down options.
-    for (i = 0; i < languageName.length; i++) {
-        var name = languageName[i];
-        var code = languageCode[i];
-        var option = document.createElement('option');
-        option.value = code;
-        option.text = name;
-        document.getElementById('language-target-options').appendChild(option);
-    }
-};
-
 // Event listener function for the translate button
 function handleTranslateBtnEvent() {
     // get the values of input/output language and input text that a user entered
     var inLang = inLanguageEl.children[1].children[0].value;
     var outLang = outLanguageEl.children[1].children[0].value;
     var inText = inTextEl.value.trim();
+
+    // save the recent selected language to the local storage
+    var selectedLanguage = {
+        inLanguage: inLang,
+        outLanguage: outLang,
+    };
+    localStorage.setItem("recentLang", JSON.stringify(selectedLanguage));
 
     const encodedParams = new URLSearchParams();
     encodedParams.append("q", inText);
@@ -85,12 +46,12 @@ function handleTranslateBtnEvent() {
 	.then(response => {
         console.log(response);
         console.log(response.data.translations[0].translatedText);
-        // Create a new object to store information of this translation 
+        //Create a new object to store information of this translation 
         var newSentence = {
             inputLang: inLang,
             inputText: inText,
             outputLang: outLang,
-            outputText: response.data.translations[0].translatedText,
+            outputText: "translated sentence",
         };
         // load the stored history from the local storage
         transHistory = JSON.parse(localStorage.getItem("history"));
@@ -220,4 +181,51 @@ function loadHistoryNRender() {
     renderHistory(false, 0);
 }
 
+function makeDropdownOptions() {
+    // Key value pairs.
+    var languageKeyValuePairs = {
+        catalan: 'ca', danish: 'da', dutch: 'nl', english: 'en', finnish: 'fi', 
+        french: 'fr', german: 'de', irish: 'ga', italian: 'it', latin: 'la',
+        polish: 'pl', portuguese: 'pt', russian: 'ru', samoan: 'sm', spanish: 'es',
+        swedish: 'sv', ukrainian: 'uk',
+    }      
+    // Convert keys and values to arrays.
+    const languageName = Object.keys(languageKeyValuePairs);
+    const languageCode = Object.values(languageKeyValuePairs);
+
+    var recentLang = JSON.parse(localStorage.getItem("recentLang"));
+    if(!recentLang) {
+        recentLang = {
+            inLanguage : "nothing",
+            outLanguage : "nothing",
+        }
+    }
+
+    // Loop through arrays and create drop-down options.
+    for (i = 0; i < languageName.length; i++) {
+        var name = languageName[i];
+        var code = languageCode[i];
+        var inOption = document.createElement('option');
+        var outOption = document.createElement('option');
+
+        outOption.value = code;
+        outOption.text = name;
+        if(code === recentLang.outLanguage) {
+            outOption.setAttribute("selected", "true");
+        } 
+        document.getElementById('language-target-options').appendChild(outOption);
+
+        // only English is allowed in dropdown menu for input language 
+        if(code === "en") {
+            inOption.value = code;
+            inOption.text = name;
+            if(code === recentLang.inLanguage) {
+                inOption.setAttribute("selected", "true");
+            }        
+            document.getElementById('language-source-options').appendChild(inOption);
+        }
+    }
+}
+
 loadHistoryNRender();
+makeDropdownOptions();
