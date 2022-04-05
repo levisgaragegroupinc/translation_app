@@ -8,6 +8,7 @@ var outTextEl = document.getElementById("translationOutput");
 var transHistory = [];
 
 buttonEl.addEventListener("click", handleTranslateBtnEvent);
+outTextEl.addEventListener("click", handleWordClickEvent);
 
 // Populate language input drop-down.
 document.getElementById('language-source-options').onclick = function() {
@@ -118,6 +119,21 @@ function handleTranslateBtnEvent() {
  
     // initialize input text value
     inTextEl.value = "";
+}
+
+function handleWordClickEvent(event) {
+    if(event.target.nodeName !== "SPAN") {
+        return;
+    }
+
+    var language = event.target.parentElement.textContent.slice(1,3);
+    var selectedWord = event.target.textContent.trim();
+
+    console.log(language, selectedWord);
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Need to add function-call for the translation API and  merriam webster api //
+    ////////////////////////////////////////////////////////////////////////////////
 }
 
 // Argument: "addOne" 
