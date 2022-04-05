@@ -25,8 +25,9 @@ body {
 #translationOutput {
     border: black solid 1px;
     width:60%;
-    height: 55%;
+    height: 45%;
     background-color: white;
+    margin-bottom: 18px;
 }
 
 #translationOutput>p>span:hover {
