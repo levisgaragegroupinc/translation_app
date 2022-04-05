@@ -1,12 +1,6 @@
 body {
-<<<<<<< HEAD
-    margin-left: 20px;
-    background-image:  url("https://3.bp.blogspot.com/-jWFnU862W7s/VUjVKU0S2RI/AAAAAAAAFyw/1blfN4mL0Bk/s1600/printable-blank-world-map-blue-green%2B(2).png");
-    background-size: cover;
-=======
     align-items: center;
     margin: 20px;
->>>>>>> 9c39b8b (centering page)
 }
 
 .header {
@@ -39,6 +33,16 @@ body {
     cursor: pointer;
 =======
     width:70%;
+<<<<<<< HEAD
     height: 50%;
 >>>>>>> 9c39b8b (centering page)
+=======
+    height: 46.9%;
+    background-color: white;
+}
+
+.selectLanguage{
+    font-weight: bold;
+    font-size: larger;
+>>>>>>> c954a3c (adding background and working on flex properties)
 }

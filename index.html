@@ -17,9 +17,9 @@
         <!-- DropDown menu language input -->
         <div class="grid-x">
         <div class="grid-x grid-padding-x" > 
-            <div class="cell small dropDown" id="dropDownInput">
+            <div class="cell small-auto dropDown" id="dropDownInput">
                 <h4 class="header">Input</h4>
-                <label>Select Language
+                <label class="selectLanguage">Select Language
                     <select id="language-source-options">
                     <option selected>Select Language</option>
                     </select>
@@ -29,9 +29,9 @@
 
         <!-- DropDown menu language output -->
         <div class="grid-x grid-padding-x" > 
-            <div class="cell small dropDown" id="dropDownOutput">
+            <div class="cell small-auto dropDown" id="dropDownOutput">
                 <h4 class="header">Output</h4>
-                <label>Select Language
+                <label class="selectLanguage">Select Language
                     <select id="language-target-options">
                     <option selected>Select Language</option>
                     </select>
@@ -50,25 +50,26 @@
 
         <!-- translate button -->
         <div class="grid-x grid-padding-x translateBtn" >
-            <div class="cell small-4 translateBtn">
-                <a class="button primary" href="#" id="translatebtn">Translate</a>
+            <div class="cell translateBtn">
+                <a class="button success" href="#" id="translatebtn">Translate</a>
             </div>
         </div>
             <br>
-            
-
-            <!-- add selected word in input language -->
-            <h3 class="selectedWord"id="selectedWordL"></h3>
+        
             <br>
-            <!-- selected word definition left -->
-            <h4 class="header">Definition</h4>
-            <div class="cell medium-6 large-4 outputBox" id="outputDefinitionL">definition output</div>
+        
+            <!-- add selected word in input language -->
+            <h4 class="header" id="selectedwordL">selected word origin language</h4>
+
+             <!-- selected word definition left -->
+            <h5 class="header">Definition</h5>
+            <div class="cell small-12 medium-6 outputBox" id="outputDefinitionL"></div>
             
             <br>
 
             <!-- selected word synonym output left -->
-            <h4 class="header">Synonyms</h4>
-            <div class="cell medium-6 large-4 outputBox" id="outputSynonymL">synonym output</div>
+            <h5 class="header">Synonyms</h5>
+            <div class="cell medium-6 outputBox" id="outputSynonymL"></div>
 
         </div>
 
@@ -77,21 +78,24 @@
 
             <!-- translation output -->
             <h4 class="header">Translation</h4>
-            <div class="cell medium-6 large-4 outputBox" id="translationOutput"> translation output</div>
-
-            <!-- selected word translation -->
-            <h3 class="selectedWord"id="selectedWordR"></h3>
+            <div class="cell medium-6 large-4 outputBox" id="translationOutput"> </div>
+        
+    
+        
             <br>
+            
+            <!-- selected word translation -->
+            <h4 class="header" id="selectedWordR">selected word translation</h4>
+
             <!-- definition trasnlation-->
-            <h4 class="header">Definition</h4>
-            <div class="cell medium-6 large-4 outputBox" id="outputDefinitionR">definition output</div>
+            <h5 class="header">Definition</h5>
+            <div class="cell medium-6 outputBox" id="outputDefinitionR"></div>
 
             <br>
 
             <!-- synonyms translation -->
-            <h4 class="header">Synonyms</h4>
-            <div class="cell medium-6 large-4 outputBox" id="outputSynonymR">synonym output</div>
-
+            <h5 class="header">Synonyms</h5>
+            <div class="cell medium-6 outputBox" id="outputSynonymR"></div>
 
         </div>
     </div>
