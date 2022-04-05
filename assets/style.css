@@ -1,4 +1,5 @@
 body {
+    display:flex;
     align-items: center;
     margin: 20px;
     background-image:url("https://championtraveler.com/wp-content/uploads/2018/01/VRBO-Countries.jpg");
@@ -7,6 +8,7 @@ body {
 
 .header {
     border: solid black 1px;
+    border-radius: 10px;
     width:35%;
     background-color: rgb(32, 156, 240);
     text-align: center;
@@ -28,7 +30,7 @@ body {
     padding: 15px;
     border: black solid 1px;
     width:60%;
-    height: 35%;
+    height: 30%;
     background-color: white;
     margin-bottom: 18px;
 }
