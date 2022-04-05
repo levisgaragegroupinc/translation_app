@@ -1,8 +1,10 @@
 .header {
     border: solid black 1px;
-    width:30%;
-    background-color: rgb(139, 139, 224);
+    width:35%;
+    background-color: rgb(136, 189, 224);
     text-align: center;
+    margin-left: 50px;
+
 };
 
 #left {
@@ -20,4 +22,8 @@
     border: black solid 1px;
     width:60%;
     height: 55%;
+}
+
+#translationOutput>p>span:hover {
+    cursor: pointer;
 }
