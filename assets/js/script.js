@@ -23,7 +23,7 @@ document.getElementById('language-source-options').onclick = function() {
     const languageName = Object.keys(languageKeyValuePairs);
     const languageCode = Object.values(languageKeyValuePairs);
     // Loop through arrays and create drop-down options.
-    for (i = 0; i < languageName.length; i++) {
+    for (i = 0; i < languageName.length; i++) {    
         var name = languageName[i];
         var code = languageCode[i];
         var option = document.createElement('option');
