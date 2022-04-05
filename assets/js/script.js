@@ -222,7 +222,7 @@ function makeDropdownOptions() {
 
         var splitName = name.split(' ');
         for (j = 0; j < splitName.length; j++) {
-            splitName[j] = splitName[j][0].toUpperCase() + splitName[j].substr(1);
+            splitName[j] = splitName[j][0].toUpperCase() + splitName[j].substring(1); 
         }
 
         splitName = splitName.join(' ');
