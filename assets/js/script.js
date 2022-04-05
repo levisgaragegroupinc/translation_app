@@ -207,6 +207,15 @@ function makeDropdownOptions() {
         var inOption = document.createElement('option');
         var outOption = document.createElement('option');
 
+        var splitName = name.split(' ');
+        for (j = 0; j < splitName.length; j++) {
+            splitName[j] = splitName[j][0].toUpperCase() + splitName[j].substr(1);
+        }
+
+        splitName = splitName.join(' ');
+        name = splitName;
+
+
         outOption.value = code;
         outOption.text = name;
         if(code === recentLang.outLanguage) {
@@ -214,7 +223,7 @@ function makeDropdownOptions() {
         } 
         document.getElementById('language-target-options').appendChild(outOption);
 
-        // only English is allowed in dropdown menu for input language 
+        // only English igit s allowed in dropdown menu for input language 
         if(code === "en") {
             inOption.value = code;
             inOption.text = name;
