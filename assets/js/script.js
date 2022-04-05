@@ -22,8 +22,10 @@ document.getElementById('language-source-options').onclick = function() {
     // Convert keys and values to arrays.
     const languageName = Object.keys(languageKeyValuePairs);
     const languageCode = Object.values(languageKeyValuePairs);
+    // add clear content prior to append
+    document.getElementById('language-source-options').textContent = '';
     // Loop through arrays and create drop-down options.
-    for (i = 0; i < languageName.length; i++) {
+    for (i = 0; i < languageName.length; i++) {    
         var name = languageName[i];
         var code = languageCode[i];
         var option = document.createElement('option');
@@ -45,6 +47,8 @@ document.getElementById('language-target-options').onclick = function() {
     // Convert keys and values to arrays.
     const languageName = Object.keys(languageKeyValuePairs);
     const languageCode = Object.values(languageKeyValuePairs);
+    // add clear content prior to append
+    document.getElementById('language-target-options').textContent = '';
     // Loop through arrays and create drop-down options.
     for (i = 0; i < languageName.length; i++) {
         var name = languageName[i];
