@@ -10,8 +10,7 @@ textarea {
 
     resize: none;
     height: 200px;
-    min-width: 315px;
-
+    min-width: 300px;
   }
 
 .header {
@@ -74,4 +73,13 @@ select#language-source-options {
 
 #translatebtn {
     font-size: 16px;
+}
+
+.large-auto {
+    max-width: 440px;
+    min-width: 322px;
+}
+
+#left {
+    margin-right: 10px;
 }
