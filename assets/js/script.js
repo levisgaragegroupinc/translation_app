@@ -140,30 +140,30 @@ function renderHistory(addOne, pElsLength) {
         // configure innerHTML for inputText
         // 'en' condition will be removed in the future
         innerEl = "(" + transHistory[i].inputLang + "): ";
-        if(transHistory[i].inputLang === "en") {
+        // if(transHistory[i].inputLang === "en") {
             wordList = transHistory[i].inputText.split(" ");
             for(var j = 0; j < wordList.length; j++) {
                 innerEl = innerEl + "<span>" + wordList[j] + " </span>";
             }
-        }
-        else {
-            innerEl = innerEl + transHistory[i].inputText;
-        }
+        // }
+        // else {
+        //     innerEl = innerEl + transHistory[i].inputText;
+        // }
         inputTextEl.innerHTML = innerEl;
 
         // configure innerHTML for outputText
         // 'en' condition will be removed in the future
         innerEl = "(" + transHistory[i].outputLang + "): ";
-        if(transHistory[i].outputLang === "en") {
+        // if(transHistory[i].outputLang === "en") {
             wordList = [];
             wordList = transHistory[i].outputText.split(" ");
             for(var k = 0; k < wordList.length; k++) {
                 innerEl = innerEl + "<span>" + wordList[k] + " </span>";
             }
-        }
-        else {
-            innerEl = innerEl + transHistory[i].outputText;
-        }
+        // }
+        // else {
+        //     innerEl = innerEl + transHistory[i].outputText;
+        // }
         outputTextEl.innerHTML = innerEl;
 
         // insert the configured innerHTML to outTextEl
