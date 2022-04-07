@@ -98,8 +98,7 @@ function handleTranslateBtnEvent() {
                 inputLang: inLang,
                 inputText: inText,
                 outputLang: outLang,
-                outputText: "translated sentence",
-                // outputText: response.data.translations[0].translatedText,
+                outputText: response.data.translations[0].translatedText,
             };
             // load the stored history from the local storage
             transHistory = JSON.parse(localStorage.getItem("history"));

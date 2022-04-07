@@ -140,3 +140,8 @@ select#language-source-options {
     }
   
   }
+
+  /* when text overflows, scroll bar shown */
+  #outputDefinitionL, #outputSynonymL, #outputDefinitionR, #outputSynonymR {
+      overflow-y: auto;
+  }
