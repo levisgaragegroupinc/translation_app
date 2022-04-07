@@ -18,6 +18,10 @@ function handleTranslateBtnEvent() {
     var outLang = outLanguageEl.children[1].children[0].value;
     var inText = inTextEl.value.trim();
 
+    // setting default values in case we run out of fetches
+    var default_input = "I'm trying to get Google to translate this sentence, but we've run out of fetches!";
+    var default_output = "Estoy tratando de que Google traduzca esta oración, ¡pero nos hemos quedado sin búsquedas!";
+
     // save the recent selected language to the local storage
     var selectedLanguage = {
         inLanguage: inLang,
@@ -42,44 +46,82 @@ function handleTranslateBtnEvent() {
         body: encodedParams
     };
 
-    // -----------------------------
+    //-----------------------------
     fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
 	.then(response => response.json())
 	.then(response => {
-        console.log(response);
-        console.log(response.data.translations[0].translatedText);
-        //Create a new object to store information of this translation 
-        var newSentence = {
-            inputLang: inLang,
-            inputText: inText,
-            outputLang: outLang,
-            outputText: response.data.translations[0].translatedText,
-        };
-        // load the stored history from the local storage
-        transHistory = JSON.parse(localStorage.getItem("history"));
-        if(!transHistory) {
-            transHistory = [];
+        // Condition for a bad response.
+        if (!response.status) {
+            //Create a new object to store basic default information
+            var newSentence = {
+                inputLang: "en",
+                inputText: default_input,
+                outputLang: "es",
+                outputText: default_output,
+            };
+            // load the stored history from the local storage
+            transHistory = JSON.parse(localStorage.getItem("history"));
+            if(!transHistory) {
+                transHistory = [];
+            }
+            // Add a new object to the beginning of the history array 
+            transHistory.unshift(newSentence);
+            // Max number of the history limited by 10
+            while(transHistory.length > 10) {
+                transHistory.pop();
+            }
+            // Save the history array to the localStorage
+            localStorage.setItem("history", JSON.stringify(transHistory));
+            // How many translation histories are saved
+            var pEls = document.querySelectorAll("#translationOutput>p");
+            // Put history data to the proper text area
+            if((pEls.length/2 === transHistory.length-1) || (pEls.length/2 === 10 && transHistory.length === 10)) {
+                renderHistory(true, pEls.length);
+            }
+            else {
+                renderHistory(false, pEls.length);
+            }
+            return;
         }
-        // Add a new object to the beginning of the history array 
-        transHistory.unshift(newSentence);
-        // Max number of the history limited by 10
-        while(transHistory.length > 10) {
-            transHistory.pop();
-        }
-        // Save the history array to the localStorage
-        localStorage.setItem("history", JSON.stringify(transHistory));
-        // How many translation histories are saved
-        var pEls = document.querySelectorAll("#translationOutput>p");
-        // Put history data to the proper text area
-        if((pEls.length/2 === transHistory.length-1) || (pEls.length/2 === 10 && transHistory.length === 10)) {
-            renderHistory(true, pEls.length);
-        }
+        // If we get a good response
         else {
-            renderHistory(false, pEls.length);
+            console.log(response);
+            console.log(response.data.translations[0].translatedText);
+            //Create a new object to store information of this translation 
+            var newSentence = {
+                inputLang: inLang,
+                inputText: inText,
+                outputLang: outLang,
+                outputText: "translated sentence",
+                // outputText: response.data.translations[0].translatedText,
+            };
+            // load the stored history from the local storage
+            transHistory = JSON.parse(localStorage.getItem("history"));
+            if(!transHistory) {
+                transHistory = [];
+            }
+            // Add a new object to the beginning of the history array 
+            transHistory.unshift(newSentence);
+            // Max number of the history limited by 10
+            while(transHistory.length > 10) {
+                transHistory.pop();
+            }
+            // Save the history array to the localStorage
+            localStorage.setItem("history", JSON.stringify(transHistory));
+            // How many translation histories are saved
+            var pEls = document.querySelectorAll("#translationOutput>p");
+            // Put history data to the proper text area
+            if((pEls.length/2 === transHistory.length-1) || (pEls.length/2 === 10 && transHistory.length === 10)) {
+                renderHistory(true, pEls.length);
+            }
+            else {
+                renderHistory(false, pEls.length);
+            }
         }
     })
 	.catch(err => console.error(err));
-    // -------------------------
+    //-------------------------
+ 
     // clear input text value
     inTextEl.value = "";
 }
@@ -306,65 +348,3 @@ function getSynonyms(word) {
 }
 
 loadHistoryNRender();
-
-function replaceButtonEvent() {
-    // get the values of input/output language and input text that a user entered
-    var inLang = inLanguageEl.children[1].children[0].value;
-    var outLang = outLanguageEl.children[1].children[0].value;
-    var inText = inTextEl.value.trim();
-
-    // save the recent selected language to the local storage
-    var selectedLanguage = {
-        inLanguage: inLang,
-        outLanguage: outLang,
-    };
-    localStorage.setItem("recentLang", JSON.stringify(selectedLanguage));
-
-    const encodedParams = new URLSearchParams();
-    encodedParams.append("q", inText);
-    encodedParams.append("format", "text");
-    encodedParams.append("target", outLang);
-    encodedParams.append("source", inLang);
-    
-    const options = {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/x-www-form-urlencoded',
-            'Accept-Encoding': 'application/gzip',
-            'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com',
-            'X-RapidAPI-Key': '5281658b66msh7dccb31e2c9a977p1b3f77jsnd0b6321375de'
-        },
-        body: encodedParams
-    };
-
-    //Create a new object to store information of this translation 
-    var newSentence = {
-        inputLang: inLang,
-        inputText: inText,
-        outputLang: outLang,
-        outputText: "translated sentence",
-    };
-    // load the stored history from the local storage
-    transHistory = JSON.parse(localStorage.getItem("history"));
-    if(!transHistory) {
-        transHistory = [];
-    }
-    // Add a new object to the beginning of the history array 
-    transHistory.unshift(newSentence);
-    // Max number of the history limited by 10
-    while(transHistory.length > 10) {
-        transHistory.pop();
-    }
-    // Save the history array to the localStorage
-    localStorage.setItem("history", JSON.stringify(transHistory));
-    // How many translation histories are saved
-    var pEls = document.querySelectorAll("#translationOutput>p");
-    // Put history data to the proper text area
-    if((pEls.length/2 === transHistory.length-1) || (pEls.length/2 === 10 && transHistory.length === 10)) {
-        renderHistory(true, pEls.length);
-    }
-    else {
-        renderHistory(false, pEls.length);
-    }
-    inTextEl.value = "";
-}

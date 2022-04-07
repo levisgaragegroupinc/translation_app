@@ -6,7 +6,7 @@
         href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" 
         crossorigin="anonymous">
 
-        <link rel = "stylesheet" href="./assets/style.css">
+        <link rel = "stylesheet" href="./assets/css/style.css">
     </head>
 
     <body> 
@@ -26,6 +26,24 @@
                         </label>
                     </div>
                 </div>
+
+            <!-- text input box -->
+            <div class="grid-x grid-padding-x inputBox" >
+                <div class="cell small-6 medium-9" id=" userInput">
+                    <label>
+                        <textarea placeholder="Your text here" id="inputText"></textarea>
+                    </label>
+                </div>
+            </div>
+
+            <!-- translate button -->
+            <div class="grid-x grid-padding-x translateBtn" >
+                <div class="cell translateBtn">
+                    <a class="button success" href="#" id="translatebtn">Translate</a>
+                </div>
+            </div>
+
+
 
                 <!-- DropDown menu language output -->
                 <div class="grid-x grid-padding-x" > 
@@ -65,7 +83,7 @@
             <!-- second column-->
             <div class="cell large-auto" id="middleL">
                 <!-- translation output -->
-                <h4 class="header">Translation</h4>
+                <h4 class="header" id="translation">Translation</h4>
                 <div class="cell medium-6 large-4 outputBox" id="translationOutput"> </div>
             </div>
         
@@ -73,31 +91,31 @@
 
             <div class="cell large-auto" id="middleR">
                 <!-- selected word translation -->
-                <h4 class="header" id="selectedWordR">selected word translation</h4>
+                <h4 class="header" id="selectedWordL">selected word translation</h4>
              
                 <!-- definition trasnlation-->
-                <h5 class="header">Definition</h5>
+                <h5 class="header" id="definitionL">Definition</h5>
                 <div class="cell medium-6 outputBox" id="outputDefinitionR"></div>
             
                 <br>
 
                 <!-- synonyms translation -->
-                <h5 class="header">Synonyms</h5>
+                <h5 class="header" id="synonymsL">Synonyms</h5>
                 <div class="cell medium-6 outputBox" id="outputSynonymR"></div>
             </div>
 
             <div class="cell large-auto" id="right">
                 <!-- add selected word in input language -->
-                <h4 class="header" id="selectedwordL">selected word english</h4>
+                <h4 class="header" id="selectedwordR">selected word english</h4>
                     
-                <!-- selected word definition left -->
-                <h5 class="header">Definition</h5>
+                <!-- selected word definition right -->
+                <h5 class="header" id="definitionR" >Definition</h5>
                 <div class="cell small-12 medium-6 outputBox" id="outputDefinitionL"></div>
                         
                     <br>
                         
                 <!-- selected word synonym output left -->
-                <h5 class="header">Synonyms</h5>
+                <h5 class="header" id="synonymsR">Synonyms</h5>
                 <div class="cell small-12 medium-6 outputBox" id="outputSynonymL"></div>
             </div>
         </div>

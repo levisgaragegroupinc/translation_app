@@ -10,7 +10,7 @@ textarea {
 
     resize: none;
     height: 200px;
-    min-width: 300px;
+    min-width: 315px;
 
   }
 
@@ -55,4 +55,9 @@ textarea {
     font-weight: bold;
     font-size: larger;
     
+}
+
+#translationOutput p span:hover {
+    color:rgb(32, 156, 240);
+    text-decoration: underline;
 }
