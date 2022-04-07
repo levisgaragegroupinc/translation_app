@@ -12,6 +12,8 @@ outTextEl.addEventListener("click", handleWordClickEvent);
 
 // Event listener function for the translate button
 function handleTranslateBtnEvent() {
+
+    // load icon start on button event
     loadAnimation.setAttribute("class", "shown");
 
     // get the values of input/output language and input text that a user entered
@@ -55,7 +57,9 @@ function handleTranslateBtnEvent() {
     fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
 	.then(response => response.json())
 	.then(response => {
+        // loading image hidden when response is done
         loadAnimation.setAttribute("class", "hidden");  
+
         // Condition for a bad response.
         if (!response.status) {
             //Create a new object to store basic default information
