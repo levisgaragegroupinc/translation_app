@@ -3,7 +3,7 @@ var inLanguageEl = document.getElementById("dropDownInput");
 var outLanguageEl = document.getElementById("dropDownOutput");
 var inTextEl = document.getElementById("inputText");
 var outTextEl = document.getElementById("translationOutput");
-
+var loadAnimation =document.getElementById("load_animation");
 // Array for the translation history
 var transHistory = [];
 
@@ -12,6 +12,8 @@ outTextEl.addEventListener("click", handleWordClickEvent);
 
 // Event listener function for the translate button
 function handleTranslateBtnEvent() {
+    loadAnimation.setAttribute("class", "shown");
+
     // get the values of input/output language and input text that a user entered
     var inLang = inLanguageEl.children[1].children[0].value;
     var outLang = outLanguageEl.children[1].children[0].value;
@@ -53,6 +55,7 @@ function handleTranslateBtnEvent() {
     fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
 	.then(response => response.json())
 	.then(response => {
+        loadAnimation.setAttribute("class", "hidden");  
         // Condition for a bad response.
         if (!response.status) {
             //Create a new object to store basic default information
@@ -119,14 +122,16 @@ function handleTranslateBtnEvent() {
             }
             else {
                 renderHistory(false, pEls.length);
-            }
+            } 
         }
     })
+    
 	.catch(err => console.error(err));
     //-------------------------
  
     // clear input text value
-    inTextEl.value = "";
+    inTextEl.value = ""; 
+    
 }
 
 function handleWordClickEvent(event) {
