@@ -56,3 +56,8 @@ textarea {
     font-size: larger;
     
 }
+
+#translationOutput p span:hover {
+    color:rgb(32, 156, 240);
+    text-decoration: underline;
+}
