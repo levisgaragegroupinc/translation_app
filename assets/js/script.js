@@ -7,7 +7,8 @@ var outTextEl = document.getElementById("translationOutput");
 // Array for the translation history
 var transHistory = [];
 
-buttonEl.addEventListener("click", replaceButtonEvent);
+// buttonEl.addEventListener("click", replaceButtonEvent);
+buttonEl.addEventListener("click", handleTranslateBtnEvent);
 outTextEl.addEventListener("click", handleWordClickEvent);
 
 // Event listener function for the translate button
@@ -36,50 +37,49 @@ function handleTranslateBtnEvent() {
             'content-type': 'application/x-www-form-urlencoded',
             'Accept-Encoding': 'application/gzip',
             'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com',
-            'X-RapidAPI-Key': '5281658b66msh7dccb31e2c9a977p1b3f77jsnd0b6321375de'
+            'X-RapidAPI-Key': '2abc631861mshfa186c1a581d324p1e144bjsn1b300ae5041a'
         },
         body: encodedParams
     };
 
-    //-----------------------------
-    // fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
-	// .then(response => response.json())
-	// .then(response => {
-    //     console.log(response);
-    //     console.log(response.data.translations[0].translatedText);
-    //     //Create a new object to store information of this translation 
-    //     var newSentence = {
-    //         inputLang: inLang,
-    //         inputText: inText,
-    //         outputLang: outLang,
-    //         outputText: "translated sentence",
-    //     };
-    //     // load the stored history from the local storage
-    //     transHistory = JSON.parse(localStorage.getItem("history"));
-    //     if(!transHistory) {
-    //         transHistory = [];
-    //     }
-    //     // Add a new object to the beginning of the history array 
-    //     transHistory.unshift(newSentence);
-    //     // Max number of the history limited by 10
-    //     while(transHistory.length > 10) {
-    //         transHistory.pop();
-    //     }
-    //     // Save the history array to the localStorage
-    //     localStorage.setItem("history", JSON.stringify(transHistory));
-    //     // How many translation histories are saved
-    //     var pEls = document.querySelectorAll("#translationOutput>p");
-    //     // Put history data to the proper text area
-    //     if((pEls.length/2 === transHistory.length-1) || (pEls.length/2 === 10 && transHistory.length === 10)) {
-    //         renderHistory(true, pEls.length);
-    //     }
-    //     else {
-    //         renderHistory(false, pEls.length);
-    //     }
-    // })
-	// .catch(err => console.error(err));
-    //-------------------------
- 
+    // -----------------------------
+    fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
+	.then(response => response.json())
+	.then(response => {
+        console.log(response);
+        console.log(response.data.translations[0].translatedText);
+        //Create a new object to store information of this translation 
+        var newSentence = {
+            inputLang: inLang,
+            inputText: inText,
+            outputLang: outLang,
+            outputText: response.data.translations[0].translatedText,
+        };
+        // load the stored history from the local storage
+        transHistory = JSON.parse(localStorage.getItem("history"));
+        if(!transHistory) {
+            transHistory = [];
+        }
+        // Add a new object to the beginning of the history array 
+        transHistory.unshift(newSentence);
+        // Max number of the history limited by 10
+        while(transHistory.length > 10) {
+            transHistory.pop();
+        }
+        // Save the history array to the localStorage
+        localStorage.setItem("history", JSON.stringify(transHistory));
+        // How many translation histories are saved
+        var pEls = document.querySelectorAll("#translationOutput>p");
+        // Put history data to the proper text area
+        if((pEls.length/2 === transHistory.length-1) || (pEls.length/2 === 10 && transHistory.length === 10)) {
+            renderHistory(true, pEls.length);
+        }
+        else {
+            renderHistory(false, pEls.length);
+        }
+    })
+	.catch(err => console.error(err));
+    // -------------------------
     // clear input text value
     inTextEl.value = "";
 }
