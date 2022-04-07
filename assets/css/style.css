@@ -83,3 +83,7 @@ select#language-source-options {
 #left {
     margin-right: 10px;
 }
+
+#outputDefinitionR, #outputDefinitionL, #outputSynonymR, #outputSynonymL {
+    overflow-y: auto;
+}
