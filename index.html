@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang = en>
     <head>
-
+        <meta charset="UTF-8">
         <link rel="stylesheet" 
         href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" 
         crossorigin="anonymous">
-
         <link rel = "stylesheet" href="./assets/css/style.css">
     </head>
 
@@ -13,7 +12,7 @@
     <!-- Left side of page -->
     <div class="grid-x">
         <div class="cell large-auto" id="left">
-        
+
             <!-- DropDown menu language input -->
             <div class="grid-x">
                 <div class="grid-x grid-padding-x" > 
@@ -27,23 +26,14 @@
                     </div>
                 </div>
 
-            <!-- text input box -->
-            <div class="grid-x grid-padding-x inputBox" >
-                <div class="cell small-6 medium-9" id=" userInput">
-                    <label>
-                        <textarea placeholder="Your text here" id="inputText"></textarea>
-                    </label>
+                <!-- text input box -->
+                <div class="grid-x grid-padding-x inputBox" >
+                    <div class="cell small-6 medium-9" id=" userInput">
+                        <label>
+                            <textarea placeholder="Your text here" id="inputText"></textarea>
+                        </label>
+                    </div>
                 </div>
-            </div>
-
-            <!-- translate button -->
-            <div class="grid-x grid-padding-x translateBtn" >
-                <div class="cell translateBtn">
-                    <a class="button success" href="#" id="translatebtn">Translate</a>
-                </div>
-            </div>
-
-
 
                 <!-- DropDown menu language output -->
                 <div class="grid-x grid-padding-x" > 
@@ -56,60 +46,62 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            
 
-                <br>
-                <br>
-            
+                <!-- translate button -->
+                <div class="grid-x grid-padding-x translateBtn" >
+                    <div class="cell translateBtn">
+                        <a class="button success" href="#" id="translatebtn">Translate</a>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <br>          
         </div>
 
-        
+        <!-- second column-->
+        <div class="cell large-auto" id="middleL">
+            <!-- translation output -->
+            <h4 class="header" id="translation">Translation</h4>
+            <div class="cell medium-6 large-4 outputBox" id="translationOutput"> </div>
+        </div>
+    
+        <br>
 
-            <!-- second column-->
-            <div class="cell large-auto" id="middleL">
-                <!-- translation output -->
-                <h4 class="header" id="translation">Translation</h4>
-                <div class="cell medium-6 large-4 outputBox" id="translationOutput"> </div>
-            </div>
+        <div class="cell large-auto" id="middleR">
+            <!-- selected word translation -->
+            <h4 class="header" id="selectedWordL">selected word translation</h4>
+            
+            <!-- definition trasnlation-->
+            <h5 class="header" id="definitionL">Definition</h5>
+            <div class="cell medium-6 outputBox" id="outputDefinitionL"></div>
         
             <br>
 
-            <div class="cell large-auto" id="middleR">
-                <!-- selected word translation -->
-                <h4 class="header" id="selectedWordL">selected word translation</h4>
-             
-                <!-- definition trasnlation-->
-                <h5 class="header" id="definitionL">Definition</h5>
-                <div class="cell medium-6 outputBox" id="outputDefinitionR"></div>
-            
-                <br>
+            <!-- synonyms translation -->
+            <h5 class="header" id="synonymsL">Synonyms</h5>
+            <div class="cell medium-6 outputBox" id="outputSynonymL"></div>
+        </div>
 
-                <!-- synonyms translation -->
-                <h5 class="header" id="synonymsL">Synonyms</h5>
-                <div class="cell medium-6 outputBox" id="outputSynonymR"></div>
-            </div>
-
-            <div class="cell large-auto" id="right">
-                <!-- add selected word in input language -->
-                <h4 class="header" id="selectedwordR">selected word english</h4>
+        <div class="cell large-auto" id="right">
+            <!-- add selected word in input language -->
+            <h4 class="header" id="selectedWordR">selected word english</h4>
+                
+            <!-- selected word definition right -->
+            <h5 class="header" id="definitionR" >Definition</h5>
+            <div class="cell small-12 medium-6 outputBox" id="outputDefinitionR"></div>
                     
-                <!-- selected word definition right -->
-                <h5 class="header" id="definitionR" >Definition</h5>
-                <div class="cell small-12 medium-6 outputBox" id="outputDefinitionL"></div>
-                        
-                    <br>
-                        
-                <!-- selected word synonym output left -->
-                <h5 class="header" id="synonymsR">Synonyms</h5>
-                <div class="cell small-12 medium-6 outputBox" id="outputSynonymL"></div>
-            </div>
+                <br>
+                    
+            <!-- selected word synonym output left -->
+            <h5 class="header" id="synonymsR">Synonyms</h5>
+            <div class="cell small-12 medium-6 outputBox" id="outputSynonymR"></div>
         </div>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+    <script src="./assets/js/script.js"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>
-        <script src="./assets/js/script.js"></script>
     </body>
 </html>
