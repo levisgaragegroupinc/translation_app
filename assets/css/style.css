@@ -20,6 +20,8 @@ textarea {
     width:80%;
     background-color: rgb(32, 156, 240);
     text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
     
 
 }
@@ -60,4 +62,16 @@ textarea {
 #translationOutput p span:hover {
     color:rgb(32, 156, 240);
     text-decoration: underline;
+}
+
+select#language-target-options {
+    background-color: #3ADB76;
+}
+
+select#language-source-options {
+    background-color: #3ADB76;
+}
+
+#translatebtn {
+    font-size: 16px;
 }
