@@ -6,6 +6,14 @@ body {
     background-size: cover;
 }
 
+textarea {
+
+    resize: none;
+    height: 200px;
+    min-width: 300px;
+
+  }
+
 .header {
     border: solid black 1px;
     border-radius: 10px;
