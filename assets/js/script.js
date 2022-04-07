@@ -45,6 +45,11 @@ function handleTranslateBtnEvent() {
     // fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
 	// .then(response => response.json())
 	// .then(response => {
+    //     console.log(response.status);
+    //     // Condition for the response.
+    //     if (response.status >= 400) {
+    //         outTextEl.textContent = response.status;
+    //     }
     //     console.log(response);
     //     console.log(response.data.translations[0].translatedText);
     //     //Create a new object to store information of this translation 
