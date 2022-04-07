@@ -3,7 +3,7 @@ var inLanguageEl = document.getElementById("dropDownInput");
 var outLanguageEl = document.getElementById("dropDownOutput");
 var inTextEl = document.getElementById("inputText");
 var outTextEl = document.getElementById("translationOutput");
-
+var loadAnimation =document.getElementById("load_animation");
 // Array for the translation history
 var transHistory = [];
 
@@ -12,6 +12,8 @@ outTextEl.addEventListener("click", handleWordClickEvent);
 
 // Event listener function for the translate button
 function handleTranslateBtnEvent() {
+    loadAnimation.setAttribute("class", "shown");
+
     // get the values of input/output language and input text that a user entered
     var inLang = inLanguageEl.children[1].children[0].value;
     var outLang = outLanguageEl.children[1].children[0].value;
@@ -53,6 +55,7 @@ function handleTranslateBtnEvent() {
     fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
 	.then(response => response.json())
 	.then(response => {
+        loadAnimation.setAttribute("class", "hidden");  
         // Condition for a bad response.
         if (!response.status) {
             //Create a new object to store basic default information
@@ -119,14 +122,16 @@ function handleTranslateBtnEvent() {
             }
             else {
                 renderHistory(false, pEls.length);
-            }
+            } 
         }
     })
+    
 	.catch(err => console.error(err));
     //-------------------------
  
     // clear input text value
-    inTextEl.value = "";
+    inTextEl.value = ""; 
+    
 }
 
 function handleWordClickEvent(event) {
@@ -134,13 +139,29 @@ function handleWordClickEvent(event) {
         return;
     }
 
+    console.log(event);
+
     var language = event.target.parentElement.textContent.slice(1,3);
     var selectedWord = event.target.textContent.trim();
 
     console.log(language, selectedWord);
 
-    getDefinition(selectedWord);
-    getSynonyms(selectedWord);
+    if (event.target.lang=="en") {
+        getDefinition(selectedWord, event.target.lang, event.target.dataset.opplang);
+        getSynonyms(selectedWord, event.target.lang, event.target.dataset.opplang);
+    }
+    else {
+        document.getElementById("selectedWordL").innerText = selectedWord +" ("+event.target.lang+")";
+        document.getElementById("selectedWordR").innerText = selectedWord +" ("+event.target.dataset.opplang+")";
+        document.getElementById("definitionL").innerText = "Definition for: <NEED TO TRANSLATE>" +selectedWord;
+        document.getElementById("definitionR").innerText = "Definition";
+        document.getElementById("synonymsL").innerText = "Synonyms for: <NEED TO TRANSLATE>" +selectedWord;
+        document.getElementById("synonymsR").innerText = "Synonyms";
+        document.getElementById("outputDefinitionL").innerText = "";
+        document.getElementById("outputDefinitionR").innerText = "";
+        document.getElementById("outputSynonymL").innerText = "";
+        document.getElementById("outputSynonymR").innerText = "";
+    }
 }
 
 // Argument: "addOne" 
@@ -188,7 +209,7 @@ function renderHistory(addOne, pElsLength) {
         // if(transHistory[i].inputLang === "en") {
             wordList = transHistory[i].inputText.split(" ");
             for(var j = 0; j < wordList.length; j++) {
-                innerEl = innerEl + "<span>" + wordList[j] + " </span>";
+                innerEl = innerEl + '<span data-oppLang="' +transHistory[i].outputLang+ '" lang="'+transHistory[i].inputLang+'">' + wordList[j] + " </span>";
             }
         // }
         // else {
@@ -203,7 +224,7 @@ function renderHistory(addOne, pElsLength) {
             wordList = [];
             wordList = transHistory[i].outputText.split(" ");
             for(var k = 0; k < wordList.length; k++) {
-                innerEl = innerEl + "<span>" + wordList[k] + " </span>";
+                innerEl = innerEl + '<span data-oppLang="' +transHistory[i].inputLang+ '" lang="'+transHistory[i].outputLang+ '">' + wordList[k] + " </span>";
             }
         // }
         // else {
@@ -299,19 +320,48 @@ loadHistoryNRender();
 makeDropdownOptions();
 
 // Fetches and returns the definitions from Webster's Dictionary API
-function getDefinition(word) {
+function getDefinition(word, langIn, langTwo) {
+    document.getElementById("outputDefinitionL").textContent = "";
+    document.getElementById("outputDefinitionR").textContent = "";
+
     const dict_API = "0b37ddb6-0f97-4062-879a-5ff3aa4ddbc5";
     var def_List = [];
+
+    if (langIn !=="en") {
+        var needTranslateL = "<NEED TO TRANSLATE> "
+    }
+    else {
+        var needTranslateL = "";
+    }
+    if (langTwo !=="en") {
+        var needTranslateR = "<NEED TO TRANSLATE> "
+    }
+    else {
+        var needTranslateR = "";
+    }
+
+    document.getElementById("definitionL").innerText = "Definition for: " +needTranslateL+word;
+    document.getElementById("definitionR").innerText = "Definition for: " +needTranslateR+word;
 
     fetch("https://www.dictionaryapi.com/api/v3/references/collegiate/json/" +word+ "?key=" +dict_API)
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
-        document.getElementById("outputDefinitionL").innerText = "";
+        // document.getElementById("outputDefinitionL").innerText = needTranslateL + "\n";
+        document.getElementById("outputDefinitionR").innerText = needTranslateR + "\n";
         for (let i=0; i<3; i++){
             if(data[i].fl) {
-                document.getElementById("outputDefinitionL").innerText += "(" +data[i].fl+ "):: " +data[i].shortdef + "\n";
+                document.getElementById("outputDefinitionL").innerText += "(" +data[i].fl+ "):: " +data[i].shortdef + "\n\n";
+            } 
+            else {
+                break;
+            }
+        }
+
+        for (let i=0; i<3; i++){
+            if(data[i].fl) {
+                document.getElementById("outputDefinitionR").innerText += "(" +data[i].fl+ "):: " +data[i].shortdef + "\n\n";
             } 
             else {
                 break;
@@ -321,9 +371,32 @@ function getDefinition(word) {
 }
 
 // Fetches and returns the synonyms from Webster's Dictionary API
-function getSynonyms(word) {
+function getSynonyms(word, langIn, langTwo) {
+    document.getElementById("outputSynonymL").textContent = "";
+    document.getElementById("outputSynonymR").textContent = "";
+
     const thes_API = "ff7cd07e-31b4-4b0e-a50b-80865fe2b28a";
     var syn_String = "";
+
+    if (langIn !=="en") {
+        var needTranslateL = "<NEED TO TRANSLATE> "
+    }
+    else {
+        var needTranslateL = "";
+    }
+    if (langTwo !=="en") {
+        var needTranslateR = "<NEED TO TRANSLATE> "
+    }
+    else {
+        var needTranslateR = "";
+    }
+
+    document.getElementById("selectedWordL").innerText = needTranslateL +word +" ("+langIn+")";;
+    document.getElementById("selectedWordR").innerText = needTranslateR +word +" ("+langTwo+")";;
+    document.getElementById("synonymsL").innerText = "Synonyms for: " +needTranslateL+word;
+    document.getElementById("synonymsR").innerText = "Synonyms for: " +needTranslateR+word;
+    document.getElementById("outputSynonymL").textContent = needTranslateL;
+    document.getElementById("outputSynonymR").textContent = needTranslateR;
 
     fetch("https://www.dictionaryapi.com/api/v3/references/thesaurus/json/"+word+"?key=" +thes_API)
     .then(function (response) {
@@ -335,7 +408,7 @@ function getSynonyms(word) {
         if(data[0].meta.syns[0]) {
             if (syn_Array.length >1)
             {
-                syn_String = syn_Array[0];
+                syn_String += syn_Array[0];
 
                 for (let i=1; i<syn_Array.length; i++) {
                     syn_String += ", " +syn_Array[i];   
@@ -343,10 +416,12 @@ function getSynonyms(word) {
                 }
             }
             else {
-                syn_String = syn_Array[i]
+                syn_String += syn_Array[i]
             }
         }
-        document.getElementById("outputSynonymL").textContent = syn_String + "\n";
+        document.getElementById("outputSynonymL").textContent = needTranslateL + "\n" +syn_String + "\n";
+
+        document.getElementById("outputSynonymR").textContent = needTranslateR + "\n" +syn_String + "\n";
     });
 }
 
