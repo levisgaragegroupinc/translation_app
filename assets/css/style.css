@@ -4,6 +4,7 @@ body {
     margin: 20px;
     background-image:url("https://championtraveler.com/wp-content/uploads/2018/01/VRBO-Countries.jpg");
     background-size: cover;
+    justify-content: center;
 }
 
 /* text input box sizing */
@@ -86,7 +87,9 @@ select#language-source-options {
     margin-right: 10px;
 }
 
-
+.success {
+    height: 50px;
+}
 
 
 /* loading image classes*/
