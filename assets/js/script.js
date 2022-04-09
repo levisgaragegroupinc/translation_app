@@ -91,8 +91,6 @@ function handleTranslateBtnEvent() {
         }
         // If we get a good response
         else {
-            console.log(response);
-            console.log(response.data.translations[0].translatedText);
             //Create a new object to store information of this translation 
             var newSentence = {
                 inputLang: inLang,
@@ -138,8 +136,6 @@ function handleWordClickEvent(event) {
         return;
     }
 
-    console.log(event);
-
     var language = event.target.parentElement.textContent.slice(1,3);
     var selectedWord = event.target.textContent.trim();
 
@@ -176,7 +172,6 @@ function renderHistory(addOne, pElsLength) {
         return;
     }
 
-    // var pEls = document.querySelectorAll("#translationOutput>p");
     var iterateMax = (addOne)?1:transHistory.length;
     
     // Clear textContent of Div when the first translation history is added. (THIS CODE CAN BE REMOVED IF THERE IS NO DEFAULT TEXT IN DIV)
@@ -207,39 +202,27 @@ function renderHistory(addOne, pElsLength) {
         }
 
         // configure innerHTML for inputText
-        // 'en' condition will be removed in the future
         innerEl = "(" + transHistory[i].inputLang + "): ";
-        // if(transHistory[i].inputLang === "en") {
-            wordList = transHistory[i].inputText.split(" ");
-            for(var j = 0; j < wordList.length; j++) {
-                innerEl = innerEl + '<span data-oppLang="' +transHistory[i].outputLang+ '" lang="'+transHistory[i].inputLang+'">' + wordList[j] + " </span>";
-            }
-        // }
-        // else {
-        //     innerEl = innerEl + transHistory[i].inputText;
-        // }
+        wordList = transHistory[i].inputText.split(" ");
+        for(var j = 0; j < wordList.length; j++) {
+            innerEl = innerEl + '<span data-oppLang="' +transHistory[i].outputLang+ '" lang="'+transHistory[i].inputLang+'">' + wordList[j] + " </span>";
+        }
         inputTextEl.innerHTML = innerEl;
 
         // configure innerHTML for outputText
-        // 'en' condition will be removed in the future
         innerEl = "(" + transHistory[i].outputLang + "): ";
-        // if(transHistory[i].outputLang === "en") {
-            wordList = [];
-            wordList = transHistory[i].outputText.split(" ");
-            for(var k = 0; k < wordList.length; k++) {
-                innerEl = innerEl + '<span data-oppLang="' +transHistory[i].inputLang+ '" lang="'+transHistory[i].outputLang+ '">' + wordList[k] + " </span>";
-            }
-        // }
-        // else {
-        //     innerEl = innerEl + transHistory[i].outputText;
-        // }
+        wordList = [];
+        wordList = transHistory[i].outputText.split(" ");
+        for(var k = 0; k < wordList.length; k++) {
+            innerEl = innerEl + '<span data-oppLang="' +transHistory[i].inputLang+ '" lang="'+transHistory[i].outputLang+ '">' + wordList[k] + " </span>";
+        }
         outputTextEl.innerHTML = innerEl;
 
-        // insert the configured innerHTML to outTextEl
+        // Insert the configured innerHTML to outTextEl
         if(addOne) {
             outTextEl.prepend(outputTextEl);
             outTextEl.prepend(inputTextEl);
-            // if # of saved history exeed 10, remove the last one
+            // If # of saved history exceed 10, remove the last one
             if(pElsLength === 20) {
                 for(var l = 0; l < 3; l++) {
                     outTextEl.removeChild(outTextEl.lastElementChild);
