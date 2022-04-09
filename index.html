@@ -2,20 +2,24 @@
 <html lang = en>
     <head>
         <meta charset="UTF-8">
+
+        <!-- linking foundation framework -->
         <link rel="stylesheet" 
         href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" 
         crossorigin="anonymous">
+
+        <!-- link to css stylesheet -->
         <link rel = "stylesheet" href="./assets/css/style.css">
     </head>
 
     <body> 
     
-        <!-- Loading image -->
-        <div id="load_animation" class="hidden">
-            <ion-icon name="earth-outline" class="animation"></ion-icon>
-        </div>
+    <!-- Loading image -->
+    <div id="load_animation" class="hidden">
+        <ion-icon name="earth-outline" class="animation"></ion-icon>
+    </div>
     
-    <!-- Left side of page -->
+    <!-- 1st column -->
     <div class="grid-x">
         <div class="cell large-auto" id="left">
 
@@ -74,6 +78,7 @@
     
         <br>
 
+        <!-- 3rd column -->
         <div class="cell large-auto" id="middleR">
             <!-- selected word translation -->
             <h4 class="header" id="selectedWordL">selected word translation</h4>
@@ -89,6 +94,7 @@
             <div class="cell medium-6 outputBox" id="outputSynonymL"></div>
         </div>
 
+        <!-- 4th column -->
         <div class="cell large-auto" id="right">
             <!-- add selected word in input language -->
             <h4 class="header" id="selectedWordR">selected word english</h4>
