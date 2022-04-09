@@ -149,6 +149,10 @@ function handleWordClickEvent(event) {
     var language = event.target.parentElement.textContent.slice(1,3);
     var selectedWord = event.target.textContent.trim();
 
+    if(selectedWord[selectedWord.length-1] === "?") {
+        selectedWord = selectedWord.slice(0,selectedWord.length-1);
+    }
+
     console.log(language, selectedWord);
 
     if (event.target.lang=="en") {
