@@ -19,12 +19,11 @@ textarea {
 .header {
     border: solid black 1px;
     border-radius: 10px;
-    width:80%;
+    width:90%;
     background-color: rgb(32, 156, 240);
     text-align: center;
     padding-left: 10px;
     padding-right: 10px;
-    
 
 }
 
@@ -36,6 +35,10 @@ textarea {
     height: 450px;
     border-radius: 10px;
     background-color: white;
+}
+
+#translationHeader{
+    width:80%
 }
 
 /* translation out put box style */
@@ -155,7 +158,7 @@ select#language-source-options {
 
 
   /* media queries */
-  @media only screen and (max-width: 990px) {
+  @media only screen and (max-width: 900px) {
     .grid-x {
         justify-content: center;
         align-items: center;
@@ -169,13 +172,4 @@ select#language-source-options {
     #right {
         margin-left:20%;
     }
-}
-
-@media only screen and (max-width: 1000px){
-    .grid-x {
-       
-        align-items: center;
-        flex-direction: column;
-    }
-
 }
