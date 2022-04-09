@@ -5,11 +5,11 @@
 This is a CSS/HTML/Javascript *group project* for the UW Bootcamp. The goal of the assignment has been chosen and agreed upon by the group: to create a single web page application that is able to fetch, parse, and display data from two separate `CORS` enabled API's. A new front end framework is to be learnt and used (`Foundation`). 
 
 This project stresses equal importance between project management and web development.
-A development process shall be identified and agreed upon to push and pull code to GitHub.
+A development process shall be identified and agreed upon to assist wtih pushing code, pulling code, and merging code conflicts on GitHub.
 
-A mockup / wireframe shall be created by an individual within the project team and used as a visual goal.
+A mockup / wireframe shall be created by an individual within the project team and used as a visual goal. (`UX/UI`)
 
-A project user story and acceptance criteria shall be created by an individual within the project team and used as a functionality goal.
+A project user story and acceptance criteria shall be created by an individual within the project team and used as a functionality goal. (`Product Manager/Owner`)
 
 Project management shall be `Agile` and augmented with `Kanban`: with individual tasks divided, assigned, and tracked.
 
@@ -39,9 +39,51 @@ Project Management Tasks:
 
 ## View the project
 
-Navigate to the World Traveler Dictionary and Translation App in [GitHub Pages](https://github.com/levisgaragegroupinc/translation_app) to view the live web app! 
+Navigate to the World Traveler Dictionary and Translation App in [GitHub Pages](https://levisgaragegroupinc.github.io/translation_app/) to view the live web app! 
 
 ## Summary of Work Completed
+<ul>
+    <li>Create boxes and layout areas on the Web App using `Foundation` and `CSS`</li>
+    <li>Add dropdown lists to select input::output languages and a translate button to translate user input</li>
+    <li>Add listener events to the button to get input::output languages and input sentence</li>
+    <li>Fetch to Google Translate to get the user input translated into the desired language
+        <ul>
+            <li>Process and parse `JSON` data</li>
+            <li>Catch any errors or invalid responses</li>
+            <li>Return the translated string</li>
+        </ul>
+    </li>
+    <li>Add a listener event to the output text area with the user input and corresponding translation to get a clicked word </li>
+    <li>Fetch to Merriam-Webster to get the dictionary definition and thesaurus synonyms for the clicked word
+        <ul>
+            <li>Process and parse `JSON` data</li>
+            <li>Catch any errors or invalid responses</li>
+            <li>Return the dictionary definition and synonyms</li>
+        </ul>
+    </li>
+    <li>Output all returned arguments into their corresponding `textAreas` </li>
+    <li>Save user input and output translations into `localStorage`</li>
+    <li>Make the Web App responsive to smaller screen sizes</li>
+</ul>
+
+## Summary of Work Remaining (in Progress)
+Functionality
+<ol>
+  <li>Add ability to pull translated dictionary definitions with either:
+    <ul>
+        <li>Translating the clicked foreign word into English, fetching the english definition, and then translating the english definition back into the chosen language</li>
+        <li>Find a dictionary for the chosen language, and fetch the definition from that dictionary written in the chosen language</li>
+    </ul>
+  </li>
+  <li>Add ability to pull translated thesaurus synonyms with either:
+    <ul>
+        <li>Translating the clicked foreign word into English, fetching the english synonyms, and then translating the english synonyms back into the chosen language AND REMOVING DUPLICATES</li>
+        <li>Find a thesaurus for the chosen language, and fetch the synonyms from that thesaurus written in the chosen language</li>
+    </ul>
+  </li>
+  <li>Remove and replace placeholder text for failed fetches</li>
+  <li>Find an alternative to Google Translate API, or purchase an API key with more fetches for the Google Translate API</li>
+</ol>
 
 ## List of Files
 * README.md - This current read me file
