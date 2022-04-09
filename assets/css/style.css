@@ -19,13 +19,13 @@ textarea {
 .header {
     border: solid black 1px;
     border-radius: 10px;
-    width:90%;
+    width: 320px;
     background-color: rgb(32, 156, 240);
     text-align: center;
     padding-left: 10px;
     padding-right: 10px;
-
 }
+
 
 /* definition & synonym output box styles */
 .outputBox {
@@ -37,15 +37,11 @@ textarea {
     background-color: white;
 }
 
-#translationHeader{
-    width:80%
-}
-
 /* translation out put box style */
 #translationOutput {
     padding: 15px;
     border: black solid 1px;
-    width:80%;
+    width:320px;
     height: 1000px;
     background-color: white;
     margin-bottom: 18px;
@@ -158,7 +154,7 @@ select#language-source-options {
 
 
   /* media queries */
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 800px) {
     .grid-x {
         justify-content: center;
         align-items: center;
@@ -172,4 +168,49 @@ select#language-source-options {
     #right {
         margin-left:20%;
     }
+}
+
+@media only screen and (max-width: 1000px) {
+    .grid-x{
+        flex-wrap: wrap;
+        justify-content: center;
+        
+    }
+    #middleL{
+        margin-left:10%;
+     }
+     #middleR{
+         margin-left:10%;
+     } 
+     #right {
+         margin-left:10%;
+     }
+}
+
+@media only screen and (max-width: 1500px) {
+    .grid-x{
+        flex-wrap: wrap;
+        justify-content: center;
+        
+    }
+    #middleL{
+        margin-left:10%;
+     }
+     #middleR{
+         margin-left:10%;
+     } 
+     #right {
+         margin-left:10%;
+     }
+     .header{
+         width:320px;
+     }
+     .outputBox{
+         width:320px;
+     }
+     #translationOutput {
+         width: 320px;
+     }
+     
+
 }
