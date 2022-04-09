@@ -8,7 +8,9 @@ var loadAnimation =document.getElementById("load_animation");
 // Array for the translation history
 var transHistory = [];
 
+// Button handler for translating user input text
 buttonEl.addEventListener("click", handleTranslateBtnEvent);
+// Button hander for clicking individual words in the translated text area
 outTextEl.addEventListener("click", handleWordClickEvent);
 
 // Event listener function for the translate button
@@ -40,6 +42,7 @@ function handleTranslateBtnEvent() {
     encodedParams.append("target", outLang);
     encodedParams.append("source", inLang);
     
+    // Google Translate API fetch options - as provided in their documentation
     const options = {
         method: 'POST',
         headers: {
@@ -49,6 +52,7 @@ function handleTranslateBtnEvent() {
             // THESE ARE THE GOOD API KEY'S
             // 'X-RapidAPI-Key': '5281658b66msh7dccb31e2c9a977p1b3f77jsnd0b6321375de'
             // 'X-RapidAPI-Key': '4462cedcafmsh7fc7d037b317c29p122959jsn8dfc43a7f111'
+
             // THIS IS THE BAD API KEY TO TEST THE CATCH CONDITIONALS
             'X-RapidAPI-Key': 'foianmew;ofinaoerigneaoirgn;ae'
         },
@@ -142,19 +146,21 @@ function handleWordClickEvent(event) {
         return;
     }
 
+    // Cleaning up the clicked word, removing spaces
     var language = event.target.parentElement.textContent.slice(1,3);
     var selectedWord = event.target.textContent.trim();
 
+    // Cleaning up the clicked word, removing extra question mark
     if(selectedWord[selectedWord.length-1] === "?") {
         selectedWord = selectedWord.slice(0,selectedWord.length-1);
     }
 
-    console.log(language, selectedWord);
-
+    // Gets the definition and synonyms if the clicked word is in English
     if (event.target.lang=="en") {
         getDefinition(selectedWord, event.target.lang, event.target.dataset.opplang);
         getSynonyms(selectedWord, event.target.lang, event.target.dataset.opplang);
     }
+    // Replacement text in case the clicked word is not in English
     else {
         document.getElementById("selectedWordL").innerText = selectedWord +" ("+event.target.lang+")";
         document.getElementById("selectedWordR").innerText = selectedWord +" ("+event.target.dataset.opplang+")";
@@ -191,6 +197,7 @@ function renderHistory(addOne, pElsLength) {
         }
     }
 
+    // Populaes the text area
     for(var i = 0; i < iterateMax; i++) {
         var wordList = [];
         var inputTextEl = document.createElement("p"); 
@@ -315,12 +322,14 @@ makeDropdownOptions();
 
 // Fetches and returns the definitions from Webster's Dictionary API.
 function getDefinition(word, langIn, langTwo) {
+    // Clears the output definition boxes
     document.getElementById("outputDefinitionL").textContent = "";
     document.getElementById("outputDefinitionR").textContent = "";
 
+    //Merriam-Webster Dictionary API key
     const dict_API = "0b37ddb6-0f97-4062-879a-5ff3aa4ddbc5";
-    var def_List = [];
 
+    //Placeholder if statements for when the clicked words are not in english
     if (langIn !=="en") {
         var needTranslateL = "<NEED TO TRANSLATE> "
     }
@@ -334,9 +343,11 @@ function getDefinition(word, langIn, langTwo) {
         var needTranslateR = "";
     }
 
+    //Placeholder populated definitions
     document.getElementById("definitionL").innerText = "Definition for: " +needTranslateL+word;
     document.getElementById("definitionR").innerText = "Definition for: " +needTranslateR+word;
 
+    // Merriam-Webster Fetch ---------------------------------
     fetch("https://www.dictionaryapi.com/api/v3/references/collegiate/json/" +word+ "?key=" +dict_API)
     .then(function (response) {
         return response.json();
@@ -344,8 +355,10 @@ function getDefinition(word, langIn, langTwo) {
     .then(function (data) {
         // document.getElementById("outputDefinitionL").innerText = needTranslateL + "\n";
         document.getElementById("outputDefinitionR").innerText = needTranslateR + "\n";
+        // Limits definition count to three entries
         for (let i=0; i<3; i++){
             if(data[i].fl) {
+                // Populates the DOM with the definitions (left side - clicked word)
                 document.getElementById("outputDefinitionL").innerText += "(" +data[i].fl+ "):: " +data[i].shortdef + "\n\n";
             } 
             else {
@@ -353,6 +366,7 @@ function getDefinition(word, langIn, langTwo) {
             }
         }
 
+                // Limits definition count to three entries (right side - translation of clicked word)
         for (let i=0; i<3; i++){
             if(data[i].fl) {
                 document.getElementById("outputDefinitionR").innerText += "(" +data[i].fl+ "):: " +data[i].shortdef + "\n\n";
@@ -362,16 +376,20 @@ function getDefinition(word, langIn, langTwo) {
             }
         }
     });
+    // --------------------------------------------------------
 }
 
 // Fetches and returns the synonyms from Webster's Dictionary API.
 function getSynonyms(word, langIn, langTwo) {
+    // Clears the output synonym boxes
     document.getElementById("outputSynonymL").textContent = "";
     document.getElementById("outputSynonymR").textContent = "";
 
+    // Merriam-Webster API Key
     const thes_API = "ff7cd07e-31b4-4b0e-a50b-80865fe2b28a";
     var syn_String = "";
 
+    //Placeholder if statements for when the clicked words are not in english
     if (langIn !=="en") {
         var needTranslateL = "<NEED TO TRANSLATE> "
     }
@@ -392,6 +410,8 @@ function getSynonyms(word, langIn, langTwo) {
     document.getElementById("outputSynonymL").textContent = needTranslateL;
     document.getElementById("outputSynonymR").textContent = needTranslateR;
 
+
+    // Merriam-Webster Thesaurus (Synonym) Fetch ----------------------------------------
     fetch("https://www.dictionaryapi.com/api/v3/references/thesaurus/json/"+word+"?key=" +thes_API)
     .then(function (response) {
         return response.json();
