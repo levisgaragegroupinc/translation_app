@@ -1,3 +1,4 @@
+// Declare document get element variables.
 var buttonEl = document.getElementById("translatebtn");
 var inLanguageEl = document.getElementById("dropDownInput");
 var outLanguageEl = document.getElementById("dropDownOutput");
@@ -13,25 +14,26 @@ outTextEl.addEventListener("click", handleWordClickEvent);
 // Event listener function for the translate button
 function handleTranslateBtnEvent() {
 
-    // load icon start on button event
+    // Load icon animation starts on button event
     loadAnimation.setAttribute("class", "shown");
 
-    // get the values of input/output language and input text that a user entered
+    // Get the values of input/output language and input text that a user entered
     var inLang = inLanguageEl.children[1].children[0].value;
     var outLang = outLanguageEl.children[1].children[0].value;
     var inText = inTextEl.value.trim();
 
-    // setting default values in case we run out of fetches
+    // Sets default values for when we run out of fetches
     var default_input = "I'm trying to get Google to translate this sentence, but we've run out of fetches!";
     var default_output = "Estoy tratando de que Google traduzca esta oración, ¡pero nos hemos quedado sin búsquedas!";
 
-    // save the recent selected language to the local storage
+    // Save recent selected input output languages to local storage.
     var selectedLanguage = {
         inLanguage: inLang,
         outLanguage: outLang,
     };
     localStorage.setItem("recentLang", JSON.stringify(selectedLanguage));
 
+    // Declare variables for google translate API fetch.
     const encodedParams = new URLSearchParams();
     encodedParams.append("q", inText);
     encodedParams.append("format", "text");
@@ -53,38 +55,38 @@ function handleTranslateBtnEvent() {
         body: encodedParams
     };
 
-    //-----------------------------
+    // Google translate fetch -----------------------------
     fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
 	.then(response => response.json())
 	.then(response => {
-        // loading image hidden when response is done
+        // Loading icon animation is hidden when response is finished.
         loadAnimation.setAttribute("class", "hidden");  
 
         // Condition for a bad response.
         if (!response.status) {
-            //Create a new object to store basic default information
+            // Create a new object to store basic default information.
             var newSentence = {
                 inputLang: "en",
                 inputText: default_input,
                 outputLang: "es",
                 outputText: default_output,
             };
-            // load the stored history from the local storage
+            // Load the stored history from the local storage.
             transHistory = JSON.parse(localStorage.getItem("history"));
             if(!transHistory) {
                 transHistory = [];
             }
-            // Add a new object to the beginning of the history array 
+            // Add a new object to the beginning of the history array. 
             transHistory.unshift(newSentence);
-            // Max number of the history limited by 10
+            // The max number of the history is limited to 10.
             while(transHistory.length > 10) {
                 transHistory.pop();
             }
-            // Save the history array to the localStorage
+            // Save the history array to the localStorage.
             localStorage.setItem("history", JSON.stringify(transHistory));
-            // How many translation histories are saved
+            // Check how many translation histories are saved.
             var pEls = document.querySelectorAll("#translationOutput>p");
-            // Put history data to the proper text area
+            // Put history data to the proper text area.
             if((pEls.length/2 === transHistory.length-1) || (pEls.length/2 === 10 && transHistory.length === 10)) {
                 renderHistory(true, pEls.length);
             }
@@ -93,33 +95,33 @@ function handleTranslateBtnEvent() {
             }
             return;
         }
-        // If we get a good response
+        // If we get a good response.
         else {
             console.log(response);
             console.log(response.data.translations[0].translatedText);
-            //Create a new object to store information of this translation 
+            // Create a new object to store information of this translation. 
             var newSentence = {
                 inputLang: inLang,
                 inputText: inText,
                 outputLang: outLang,
                 outputText: response.data.translations[0].translatedText,
             };
-            // load the stored history from the local storage
+            // Load the stored history from local storage.
             transHistory = JSON.parse(localStorage.getItem("history"));
             if(!transHistory) {
                 transHistory = [];
             }
-            // Add a new object to the beginning of the history array 
+            // Add a new object to the beginning of the history array. 
             transHistory.unshift(newSentence);
-            // Max number of the history limited by 10
+            // The max number of the history is limited to 10.
             while(transHistory.length > 10) {
                 transHistory.pop();
             }
-            // Save the history array to the localStorage
+            // Save the history array to the localStorage.
             localStorage.setItem("history", JSON.stringify(transHistory));
-            // How many translation histories are saved
+            // Check how many translation histories are saved.
             var pEls = document.querySelectorAll("#translationOutput>p");
-            // Put history data to the proper text area
+            // Put history data to the proper text area.
             if((pEls.length/2 === transHistory.length-1) || (pEls.length/2 === 10 && transHistory.length === 10)) {
                 renderHistory(true, pEls.length);
             }
@@ -130,13 +132,13 @@ function handleTranslateBtnEvent() {
     })
     
 	.catch(err => console.error(err));
-    //-------------------------
+    // End of Google translate API fetch -------------------------
  
-    // clear input text value
-    inTextEl.value = ""; 
-    
+    // Clear input text area.
+    inTextEl.value = "";     
 }
 
+// Handle click event on individual words.
 function handleWordClickEvent(event) {
     if(event.target.nodeName !== "SPAN") {
         return;
@@ -206,7 +208,7 @@ function renderHistory(addOne, pElsLength) {
             }
         }
 
-        // configure innerHTML for inputText
+        // Configure innerHTML for inputText.
         // 'en' condition will be removed in the future
         innerEl = "(" + transHistory[i].inputLang + "): ";
         // if(transHistory[i].inputLang === "en") {
@@ -220,7 +222,7 @@ function renderHistory(addOne, pElsLength) {
         // }
         inputTextEl.innerHTML = innerEl;
 
-        // configure innerHTML for outputText
+        // Configure innerHTML for outputText
         // 'en' condition will be removed in the future
         innerEl = "(" + transHistory[i].outputLang + "): ";
         // if(transHistory[i].outputLang === "en") {
@@ -254,9 +256,9 @@ function renderHistory(addOne, pElsLength) {
     return;
 }
 
-// load localstorage data for the web page loading or refreshing
+// Load localstorage on page load or refresh.
 function loadHistoryNRender() {
-    // load the stored history from the local storage
+    // Load the stored history from the local storage
     transHistory = JSON.parse(localStorage.getItem("history"));
     if(!transHistory) {
         transHistory = [];
@@ -265,14 +267,14 @@ function loadHistoryNRender() {
 }
 
 function makeDropdownOptions() {
-    // Key value pairs.
+    // Language key value pairs.
     var languageKeyValuePairs = {
         catalan: 'ca', danish: 'da', dutch: 'nl', english: 'en', finnish: 'fi', 
         french: 'fr', german: 'de', irish: 'ga', italian: 'it', latin: 'la',
         polish: 'pl', portuguese: 'pt', russian: 'ru', samoan: 'sm', spanish: 'es',
         swedish: 'sv', ukrainian: 'uk',
     }      
-    // Convert keys and values to arrays.
+    // Convert key value pairs object to individual arrays.
     const languageName = Object.keys(languageKeyValuePairs);
     const languageCode = Object.values(languageKeyValuePairs);
 
@@ -284,7 +286,7 @@ function makeDropdownOptions() {
         }
     }
 
-    // Loop through arrays and create drop-down options.
+    // Populate language drop-down options.
     for (i = 0; i < languageName.length; i++) {
         var name = languageName[i];
         var code = languageCode[i];
@@ -307,7 +309,7 @@ function makeDropdownOptions() {
         } 
         document.getElementById('language-target-options').appendChild(outOption);
 
-        // only English igit s allowed in dropdown menu for input language 
+        // Only English languge is allowed in dropdown menu for input language. 
         if(code === "en") {
             inOption.value = code;
             inOption.text = name;
@@ -322,7 +324,7 @@ function makeDropdownOptions() {
 loadHistoryNRender();
 makeDropdownOptions();
 
-// Fetches and returns the definitions from Webster's Dictionary API
+// Fetches and returns the definitions from Webster's Dictionary API.
 function getDefinition(word, langIn, langTwo) {
     document.getElementById("outputDefinitionL").textContent = "";
     document.getElementById("outputDefinitionR").textContent = "";
@@ -373,7 +375,7 @@ function getDefinition(word, langIn, langTwo) {
     });
 }
 
-// Fetches and returns the synonyms from Webster's Dictionary API
+// Fetches and returns the synonyms from Webster's Dictionary API.
 function getSynonyms(word, langIn, langTwo) {
     document.getElementById("outputSynonymL").textContent = "";
     document.getElementById("outputSynonymR").textContent = "";
