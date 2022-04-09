@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = en>
     <head>
-        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
 
         <!-- linking foundation framework -->
         <link rel="stylesheet" 
@@ -10,6 +10,14 @@
 
         <!-- link to css stylesheet -->
         <link rel = "stylesheet" href="./assets/css/style.css">
+
+        <title>World Traveler Translation</title>
+
+        
+        <!-- favicon -->
+        <link rel="favicon" 
+        type="image/png" 
+        href="https://i1.wp.com/blog.jackhake.com/wp-content/uploads/2017/08/cropped-globe-favicon.png?fit=512%2C512"/>
     </head>
 
     <body> 
@@ -20,14 +28,14 @@
     </div>
     
     <!-- 1st column -->
-    <div class="grid-x">
-        <div class="cell large-auto" id="left">
+    <div class="grid-x grid-padding-x">
+        <div class="cell small-12 large-auto" id="left">
 
             <!-- DropDown menu language input -->
             <div class="grid-x grid-padding-x">
                 <div class="grid-x grid-padding-x" > 
                     <div class="cell small-auto dropDown" id="dropDownInput">
-                        <h4 class="header large-auto">Input</h4>
+                        <h4 class="header large-auto" id="inputHeader">Input</h4>
                         <label class="selectLanguage">Select Language
                             <select id="language-source-options">
                             <option selected>Select Language</option>
@@ -38,7 +46,7 @@
 
                 <!-- text input box -->
                 <div class="grid-x grid-padding-x inputBox" >
-                    <div class="cell small-6 medium-9" id=" userInput">
+                    <div class="cell small-6 medium-9 large-auto" id=" userInput">
                         <label>
                             <textarea placeholder="Your text here" id="inputText"></textarea>
                         </label>
@@ -48,7 +56,7 @@
                 <!-- DropDown menu language output -->
                 <div class="grid-x grid-padding-x" > 
                     <div class="cell small-auto dropDown" id="dropDownOutput">
-                        <h4 class="header large-auto">Output</h4>
+                        <h4 class="header large-auto" id="outputHeader">Output</h4>
                         <label class="selectLanguage">Select Language
                             <select id="language-target-options">
                             <option selected>Select Language</option>
@@ -69,7 +77,7 @@
         </div>
 
         <!-- second column-->
-        <div class="cell large-auto" id="middleL">
+        <div class="cell small-12 large-auto" id="middleL">
             <!-- translation output -->
             <h4 class="header" id="translation">Translation</h4>
             <div class="cell medium-6 large-4 outputBox" id="translationOutput"> </div>
@@ -78,35 +86,35 @@
         <br>
 
         <!-- 3rd column -->
-        <div class="cell large-auto" id="middleR">
+        <div class="cell small-12 large-auto" id="middleR">
             <!-- selected word translation -->
             <h4 class="header" id="selectedWordL">selected word translation</h4>
             
             <!-- definition trasnlation-->
             <h5 class="header" id="definitionL">Definition</h5>
-            <div class="cell medium-6 outputBox" id="outputDefinitionL"></div>
+            <div class="cell small-12 medium-6 large-auto outputBox" id="outputDefinitionL"></div>
         
             <br>
 
             <!-- synonyms translation -->
             <h5 class="header" id="synonymsL">Synonyms</h5>
-            <div class="cell medium-6 outputBox" id="outputSynonymL"></div>
+            <div class="cell small-12 medium-6 large-auto outputBox" id="outputSynonymL"></div>
         </div>
 
         <!-- 4th column -->
-        <div class="cell large-auto" id="right">
+        <div class="cell small-12 large-auto" id="right">
             <!-- add selected word in input language -->
             <h4 class="header" id="selectedWordR">selected word english</h4>
                 
             <!-- selected word definition right -->
             <h5 class="header" id="definitionR" >Definition</h5>
-            <div class="cell small-12 medium-6 outputBox" id="outputDefinitionR"></div>
+            <div class="cell small-12 medium-6 large-auto outputBox" id="outputDefinitionR"></div>
                     
                 <br>
                     
             <!-- selected word synonym output left -->
             <h5 class="header" id="synonymsR">Synonyms</h5>
-            <div class="cell small-12 medium-6 outputBox" id="outputSynonymR"></div>
+            <div class="cell small-12 medium-6 large-auto outputBox" id="outputSynonymR"></div>
         </div>
     </div>
        

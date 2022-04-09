@@ -152,3 +152,30 @@ select#language-source-options {
   #outputDefinitionL, #outputSynonymL, #outputDefinitionR, #outputSynonymR {
       overflow-y: auto;
   }
+
+
+  /* media queries */
+  @media only screen and (max-width: 990px) {
+    .grid-x {
+        justify-content: center;
+        align-items: center;
+    }
+    #middleL{
+       margin-left: 20%;
+    }
+    #middleR{
+        margin-left:20%;
+    } 
+    #right {
+        margin-left:20%;
+    }
+}
+
+@media only screen and (max-width: 1000px){
+    .grid-x {
+       
+        align-items: center;
+        flex-direction: column;
+    }
+
+}
