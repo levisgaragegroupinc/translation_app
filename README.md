@@ -128,6 +128,10 @@ THEN I am presented with the definition to that word and it's synonyms
 
 ![Translation App Dashboard](./assets/images/Screenshot_Translation_App.png "Translation App Dashboard")
 
+## Link to the Class Presentation
+
+[Windows Powerpoint!](https://docs.google.com/presentation/d/1LSsZABGKnamMSbsRGqZyfDjyJ98M6PD3BbDgPf7UAMQ/edit?usp=sharing)
+
 ## Credits
 
 This project uses:
