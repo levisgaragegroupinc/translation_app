@@ -62,7 +62,7 @@ Navigate to the World Traveler Dictionary and Translation App in [GitHub Pages](
         </ul>
     </li>
     <li>Output all returned arguments into their corresponding `textAreas` </li>
-    <li>Save user input and output translations into `localStorage`</li>.
+    <li>Save user input and output translations into `localStorage`</li>
     <li>Make the Web App responsive to smaller screen sizes</li>
 </ul>
 
