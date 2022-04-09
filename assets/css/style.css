@@ -152,3 +152,9 @@ select#language-source-options {
   #outputDefinitionL, #outputSynonymL, #outputDefinitionR, #outputSynonymR {
       overflow-y: auto;
   }
+
+  @media only screen and (max-width: 600px) {
+    body {
+        padding: 15%;
+    }
+  }
