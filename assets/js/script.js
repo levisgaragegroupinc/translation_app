@@ -61,78 +61,29 @@ function handleTranslateBtnEvent() {
 
     // Google translate fetch -----------------------------
     fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
-	.then(response => response.json())
 	.then(response => {
-        // Loading icon animation is hidden when response is finished.
-        loadAnimation.setAttribute("class", "hidden");  
-
         // Condition for a bad response.
-        if (!response.status) {
-            // Create a new object to store basic default information.
+        if (response.ok) {
+            response.json().then(body => {
+                var newSentence = {
+                    inputLang: inLang,
+                    inputText: inText,
+                    outputLang: outLang,
+                    outputText: body.data.translations[0].translatedText,
+                };
+                makeNRenderHistory(newSentence);
+            })
+        }
+        else {
             var newSentence = {
                 inputLang: "en",
                 inputText: default_input,
                 outputLang: "es",
                 outputText: default_output,
             };
-            // Load the stored history from the local storage.
-            transHistory = JSON.parse(localStorage.getItem("history"));
-            if(!transHistory) {
-                transHistory = [];
-            }
-            // Add a new object to the beginning of the history array. 
-            transHistory.unshift(newSentence);
-            // The max number of the history is limited to 10.
-            while(transHistory.length > 10) {
-                transHistory.pop();
-            }
-            // Save the history array to the localStorage.
-            localStorage.setItem("history", JSON.stringify(transHistory));
-            // Check how many translation histories are saved.
-            var pEls = document.querySelectorAll("#translationOutput>p");
-            // Put history data to the proper text area.
-            if((pEls.length/2 === transHistory.length-1) || (pEls.length/2 === 10 && transHistory.length === 10)) {
-                renderHistory(true, pEls.length);
-            }
-            else {
-                renderHistory(false, pEls.length);
-            }
-            return;
-        }
-        // If we get a good response.
-        else {
-            // Create a new object to store information of this translation.
-            var newSentence = {
-                inputLang: inLang,
-                inputText: inText,
-                outputLang: outLang,
-                outputText: response.data.translations[0].translatedText,
-            };
-            // Load the stored history from local storage.
-            transHistory = JSON.parse(localStorage.getItem("history"));
-            if(!transHistory) {
-                transHistory = [];
-            }
-            // Add a new object to the beginning of the history array. 
-            transHistory.unshift(newSentence);
-            // The max number of the history is limited to 10.
-            while(transHistory.length > 10) {
-                transHistory.pop();
-            }
-            // Save the history array to the localStorage.
-            localStorage.setItem("history", JSON.stringify(transHistory));
-            // Check how many translation histories are saved.
-            var pEls = document.querySelectorAll("#translationOutput>p");
-            // Put history data to the proper text area.
-            if((pEls.length/2 === transHistory.length-1) || (pEls.length/2 === 10 && transHistory.length === 10)) {
-                renderHistory(true, pEls.length);
-            }
-            else {
-                renderHistory(false, pEls.length);
-            } 
+            makeNRenderHistory(newSentence);
         }
     })
-    
 	.catch(err => console.error(err));
     // End of Google translate API fetch -------------------------
  
@@ -437,6 +388,34 @@ function getSynonyms(word, langIn, langTwo) {
 
         document.getElementById("outputSynonymR").textContent = needTranslateR + "\n" +syn_String + "\n";
     });
+}
+
+function makeNRenderHistory(newSentence) {
+    // Loading icon animation is hidden when response is finished.
+    loadAnimation.setAttribute("class", "hidden");
+
+    // Load the stored history from the local storage.
+    transHistory = JSON.parse(localStorage.getItem("history"));
+    if(!transHistory) {
+        transHistory = [];
+    }
+    // Add a new object to the beginning of the history array. 
+    transHistory.unshift(newSentence);
+    // The max number of the history is limited to 10.
+    while(transHistory.length > 10) {
+        transHistory.pop();
+    }
+    // Save the history array to the localStorage.
+    localStorage.setItem("history", JSON.stringify(transHistory));
+    // Check how many translation histories are saved.
+    var pEls = document.querySelectorAll("#translationOutput>p");
+    // Put history data to the proper text area.
+    if((pEls.length/2 === transHistory.length-1) || (pEls.length/2 === 10 && transHistory.length === 10)) {
+        renderHistory(true, pEls.length);
+    }
+    else {
+        renderHistory(false, pEls.length);
+    }
 }
 
 loadHistoryNRender();
