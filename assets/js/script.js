@@ -49,12 +49,7 @@ function handleTranslateBtnEvent() {
             'content-type': 'application/x-www-form-urlencoded',
             'Accept-Encoding': 'application/gzip',
             'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com',
-            // THESE ARE THE GOOD API KEY'S
-            // 'X-RapidAPI-Key': '5281658b66msh7dccb31e2c9a977p1b3f77jsnd0b6321375de'
-            // 'X-RapidAPI-Key': '4462cedcafmsh7fc7d037b317c29p122959jsn8dfc43a7f111'
-
-            // THIS IS THE BAD API KEY TO TEST THE CATCH CONDITIONALS
-            'X-RapidAPI-Key': 'foianmew;ofinaoerigneaoirgn;ae'
+            'X-RapidAPI-Key': 'f9d27df0famsh52cbad18064f546p10dce4jsn6f191d20cc75'
         },
         body: encodedParams
     };
