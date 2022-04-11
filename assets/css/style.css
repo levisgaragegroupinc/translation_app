@@ -2,7 +2,7 @@ body {
     display:flex;
     align-items: center;
     margin: 20px;
-    background-image:url("https://championtraveler.com/wp-content/uploads/2018/01/VRBO-Countries.jpg");
+    background-image:url("../images/world75.png");
     background-size: cover;
     justify-content: center;
 }
