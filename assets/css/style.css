@@ -15,6 +15,17 @@ textarea {
     min-width: 300px;
   }
 
+  /* style textarea background on focus */
+textarea:focus {
+    background-color: rgba(255,255,255,.75);
+  }
+
+/* style placeholder text */
+::placeholder { 
+    color: #333;
+    opacity: 0.85;
+  }
+
 /* header styles */
 .header {
     border: solid black 1px;
