@@ -2,14 +2,14 @@ body {
     display:flex;
     align-items: center;
     margin: 20px;
-    background-image:url("https://championtraveler.com/wp-content/uploads/2018/01/VRBO-Countries.jpg");
+    background-image:url("../images/world75.png");
     background-size: cover;
     justify-content: center;
 }
 
 /* text input box sizing */
 textarea {
-
+    background-color: rgba(255,255,255,.75);
     resize: none;
     height: 200px;
     min-width: 300px;
@@ -26,7 +26,6 @@ textarea {
     padding-right: 10px;
 }
 
-
 /* definition & synonym output box styles */
 .outputBox {
     padding:15px;
@@ -34,7 +33,7 @@ textarea {
     width:80%;
     height: 450px;
     border-radius: 10px;
-    background-color: white;
+    background-color: rgba(255,255,255,.75);
 }
 
 /* translation out put box style */
@@ -43,7 +42,7 @@ textarea {
     border: black solid 1px;
     width:320px;
     height: 1000px;
-    background-color: white;
+    background-color: rgba(255,255,255,.75);
     margin-bottom: 18px;
     overflow-y: auto;
 }
@@ -54,7 +53,6 @@ textarea {
     width:70%;
     height: 50%;
     height: 46.9%;
-    background-color: white;
     color:rgb(32, 156, 240);
     text-decoration: underline;
 }
@@ -91,7 +89,6 @@ select#language-source-options {
 .success {
     height: 50px;
 }
-
 
 /* loading image classes*/
 .hidden {
@@ -144,14 +141,12 @@ select#language-source-options {
       padding: 17rem;
       color: green;
     }
-  
   }
 
   /* when text overflows, scroll bar shown */
   #outputDefinitionL, #outputSynonymL, #outputDefinitionR, #outputSynonymR {
       overflow-y: auto;
   }
-
 
   /* media queries */
   @media only screen and (max-width: 800px) {
@@ -211,6 +206,4 @@ select#language-source-options {
      #translationOutput {
          width: 320px;
      }
-     
-
 }
